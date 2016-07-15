@@ -7,9 +7,9 @@ Blue Sky Vacations Wordpress Site
    <h1>Blue Sky Vacations</h1>
    
    <div id="left">
-   <p>
+   
    <strong>Website:</strong> <a href="http:/???" target="_blank">There is no current website for Blue Sky Vacations at this point.</a>
-   </p>
+   
    
    <h3>Theme Choice</h3>
    <p>
