@@ -113,14 +113,14 @@ Blue Sky Vacations Wordpress Site
   </p>
   <h3> List of Plugins Installed</h3>
   <ul>
-      <li><strong>Akismet</strong> was intalled to protect from spam. LINK TO PAGE</li>
-      <li>Courtney installed <strong>WordPress Database Backup</strong> so we didn't loose all our hard work and effort along the way. <href= </li>
-      <li>Ken installed <strong>WooCommerce Booking and Rentals and ultimate Responsive Image Slider</strong> so people wanting a rental can pay online and view the properties that are available. <href=></li>
-      <li>Matt installed <strong> Fruitful Shortcodes and Maintenance</strong> for our theme and also for the ease of the ongoing page maintenance. LINK GTO PAGE</li>
+      <li><strong>Akismet</strong> was intalled to protect from spam, this was already installed on WordPress.</li>
+      <li>Courtney installed <strong>WordPress Database Backup</strong> so we didn't loose all our hard work and effort along the way. <href = https://wordpress.org/plugins/wp-db-backup/>Backup plugin.</li>
+      <li>Ken installed <strong>WooCommerce Booking and Rentals and Ultimate Responsive Image Slider</strong> so people wanting a rental can pay online and view the properties that are available. <href =https://woocommerce.com/?utm_source=adwords&utm_medium=cpc&utm_campaign=woocommerce%20branded&gclid=CjwKEAjwq8y8BRCstYTm8qeT9mwSJACZGjUk7i2SV0a-niJiPYNLBF9aRMVTkPzzYBOc4gMbpY6oYxoCqE3w_wcB>WooCommerce WebPage.><href = https://wordpress.org/plugins/ultimate-responsive-image-slider/>Slider plugin.</li>
+      <li>Matt installed <strong> Fruitful Shortcodes and Maintenance</strong> for our theme and also for the ease of the ongoing page maintenance. <href = https://wordpress.org/plugins/fruitful-shortcodes/>Fruitful plugin Page with maintenance included.</li>
   
   </ul>
   
-</div> <!-- end of #frame -->
+</div> 
 
 
 </body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>
