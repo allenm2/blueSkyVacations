@@ -111,6 +111,15 @@ Blue Sky Vacations Wordpress Site
   <p>
   The original theme was based on [insert the name of the base theme here.] The name of the client's theme, derived from this base theme is:  [insert the client's theme name here].
   </p>
+  <h3> List of Plugins Installed</h3>
+  <ul>
+      <li><strong>Akismet</strong> was intalled to protect from spam. LINK TO PAGE</li>
+      <li>Courtney installed <strong>WordPress Database Backup</strong> so we didn't loose all our hard work and effort along the way. <href= </li>
+      <li>Ken installed <strong>WooCommerce Booking and Rentals and ultimate Responsive Image Slider</strong> so people wanting a rental can pay online and view the properties that are available. <href=></li>
+      <li>Matt installed <strong> Fruitful Shortcodes and Maintenance</strong> for our theme and also for the ease of the ongoing page maintenance. LINK GTO PAGE</li>
+  
+  </ul>
+  
 </div> <!-- end of #frame -->
 
 
