@@ -319,8 +319,11 @@ function fruitful_scripts() {
 
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
-	}
+_	}
 }
+//KMA Add accordion function to be used in various postings
+	wp_enqueue_script( 'blueSkyProps', get_template_directory_uri() . '/js/blueSkyProps.js', array('jquery') );
+
 }
 add_action( 'wp_enqueue_scripts', 'fruitful_scripts' );
 
@@ -1434,6 +1437,12 @@ if (class_exists('Woocommerce')) {
 			return $fragments;
 		}
 	}
+}
+
+// add jQuery to the theme
+if ( !is_admin()) add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
+function my_jquery_enqueue() {
+	wp_enqueue_script('jquery');
 }
 
 if ( ! function_exists( 'fruitful_custom_css_and_slider_scripts' ) ) {

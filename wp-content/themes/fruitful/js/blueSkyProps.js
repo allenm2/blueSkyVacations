@@ -5,7 +5,7 @@
 */
 
 // blueSkyProps() - Accordion function for hiding/displaying property data
-	$(document).ready(function()
+	jQuery(document).ready(function()
 	{
 		// Display content of first h3 element, hiding all other elements
 		$(".accord h3").eq(0).addClass("active");
@@ -16,7 +16,7 @@
 		{
 			//When h3 is clicked, display next "ul" element and hide any other open "ul" elements
 			$(this).next("ul").slideToggle("slow").siblings("ul:visible").slideUp("slow");
-			// Toggle "active" class to selected h3
+			// Toggle "active" class to selected h
 			$(this).toggleClass("active");
 			$(this).siblings("h3").removeClass("active");
 		}); // end of (".accord h3").click()
