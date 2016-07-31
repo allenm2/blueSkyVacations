@@ -319,7 +319,7 @@ function fruitful_scripts() {
 
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
-_	}
+	}
 }
 //KMA Add accordion function to be used in various postings
 	wp_enqueue_script( 'blueSkyProps', get_template_directory_uri() . '/js/blueSkyProps.js', array('jquery') );
