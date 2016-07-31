@@ -56,12 +56,11 @@
 									?>
 									<div data-originalstyle="<?php echo $logo_pos_class; ?>" class="header-hgroup <?php echo $logo_pos_class; ?>">  
 										<?php echo fruitful_get_logo(); ?>
-									</div>	
 										
 									<div data-originalstyle="<?php echo $menu_pos_class; ?>" class="menu-wrapper <?php echo $menu_pos_class; ?>">
 										<?php fruitful_get_languages_list(); ?>
 										<?php fruitful_get_cart_button_html(); ?>
-											
+										
 										<nav role="navigation" class="site-navigation main-navigation">
 											<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 										</nav><!-- .site-navigation .main-navigation -->
