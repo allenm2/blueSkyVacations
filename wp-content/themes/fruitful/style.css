@@ -46,6 +46,64 @@ body {
 	margin-bottom:10px;
 	margin-top: 101px;
 }
+/* jQuery Property Accordion */
+#frame {
+	width: 540px;
+}
+.accord {
+    width: 800px;
+    border-bottom: solid 1px #1F0429;
+}
+.accord h3 {
+    background: #e9e7e7 url(graphic/arrow-square.gif) no-repeat right -51px;
+    padding: 7px 15px;
+    margin: 0;
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    border: solid 1px #1F0429;
+    cursor: pointer;
+    text-align: center;
+}
+.accord h3:hover {
+    background-color: #E1B4F0;
+}
+.accord h3.active {
+    background-position: right 5px;
+}
+.accord ul {
+    background: #f7f7f7;
+    margin: 0;
+    padding: 10px 10px 15px 20px;
+    border-left: solid 1px #1F0429;
+    border-right: solid 1px #1F0429;
+    border-bottom: solid .5px #1F0429;
+    display: none;
+}
+
+/* Contact Expand */
+.expand {
+     width:             15%;
+     height:            15%;
+     margin:            0 10px;
+     border:            1px blue solid;
+     -webkit-transition: width 2s ease, height 2s ease;
+     -moz-transition:   width 2s ease, height 2s ease;
+     -o-transition:     width 2s ease, height 2s ease;
+     transition:        width 2s ease, height 2s ease;
+  } 
+  
+  .expand-change {
+     width:              60%;
+     height:             60%;
+     margin:             25px;
+     border:             1px purple solid;
+     -webkit-transition: width .5s ease, height 1s ease;
+     -moz-transition:    width 1s ease, height 1s ease;
+     -o-transition:      width 1s ease, height 1s ease;
+     transition:         width 1s ease, height 1s ease;
+     -webkit-box-shadow: 14px 18px 52px -1px rgba(23,36,69,1);
+     -moz-box-shadow:    14px 18px 52px -1px rgba(23,36,69,1);
+     box-shadow:         14px 18px 52px -1px rgba(23,36,69,1);  } 
+  
 
 /*Fix fancybox 2*/
 body.fancybox-lock {

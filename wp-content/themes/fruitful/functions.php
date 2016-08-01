@@ -295,6 +295,7 @@ function fruitful_scripts() {
 }
 //KMA Add accordion function to be used in various postings
 	wp_enqueue_script( 'blueSkyProps', get_template_directory_uri() . '/js/blueSkyProps.js', array('jquery') );
+	wp_enqueue_script( 'contactExpand', get_template_directory_uri() . '/js/contactExpand.js', array('jquery'));
 }
 add_action( 'wp_enqueue_scripts', 'fruitful_scripts' );
 if ( ! function_exists( 'fruitful_get_link_url' ) ) {
