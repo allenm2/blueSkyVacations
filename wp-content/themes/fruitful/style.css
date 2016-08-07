@@ -41,6 +41,14 @@ body {
 	overflow:hidden;
 	font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
+
+.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+.ng-valid.ng-dirty {
+  border-color: green;
+}
 .page-container{
 	padding-top:10px;
 	margin-bottom:10px;
@@ -89,8 +97,8 @@ body {
      -moz-transition:   width 2s ease, height 2s ease;
      -o-transition:     width 2s ease, height 2s ease;
      transition:        width 2s ease, height 2s ease;
-  } 
-  
+  }
+
   .expand-change {
      width:              60%;
      height:             60%;
@@ -102,8 +110,8 @@ body {
      transition:         width 1s ease, height 1s ease;
      -webkit-box-shadow: 14px 18px 52px -1px rgba(23,36,69,1);
      -moz-box-shadow:    14px 18px 52px -1px rgba(23,36,69,1);
-     box-shadow:         14px 18px 52px -1px rgba(23,36,69,1);  } 
-  
+     box-shadow:         14px 18px 52px -1px rgba(23,36,69,1);  }
+
 
 /*Fix fancybox 2*/
 body.fancybox-lock {

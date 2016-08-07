@@ -36,7 +36,7 @@ if ( ! function_exists( 'fruitful_setup' ) ):
  /**
  * Implement the Custom Header feature
  */
- 
+
  /*require get_template_directory() . '/inc/custom-header.php';*/
  /**
  * Custom template tags for this theme.
@@ -54,7 +54,7 @@ require get_template_directory() . '/inc/tweaks.php';
 require get_template_directory() . '/inc/func/fruitful-function.php';
 require get_template_directory() . '/inc/func/comment-inline-error.php';
 require get_template_directory() . '/inc/metaboxes/init-for-objestcs-mb.php';
-	
+
 /**
  * Custom Theme Options
  */
@@ -103,25 +103,25 @@ function fruitful_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
-	
+
 	add_theme_support( 'post-formats', array(
 		'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video'
 	) );
-	
+
 	/**
 	 * This theme uses wp_nav_menu() in one location.
 	 */
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'fruitful' ),
 	) );
-	
+
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 604, 270, true );
 	add_image_size( 'slider-thumb', 608, 300, true );
 	add_image_size( 'main-slider', 1920, 900, true );
-	
+
 	add_editor_style( array( 'css/editor-style.css', 'fonts/genericons.css', fruitful_fonts_url() ) );
-	
+
 	$defaults = array(
 		'default-color'          => 'fff',
 		'default-image'          => '',
@@ -130,11 +130,11 @@ function fruitful_setup() {
 		'admin-preview-callback' => ''
 		);
 	/*add_theme_support( 'custom-background', $defaults );*/
-	
+
 	add_filter( 'use_default_gallery_style', '__return_false' );
-	
+
 }
-endif; 
+endif;
 add_action( 'after_setup_theme', 'fruitful_setup' );
 // fruitful_setup
 if ( ! function_exists( 'fruitful_wp_title' ) ) {
@@ -159,7 +159,7 @@ function fruitful_wp_title( $title, $sep ) {
  if ( ! function_exists( 'fruitful_widgets_init' ) ) {
 function fruitful_widgets_init() {
 	register_widget( 'Fruitful_Widget_News_Archive' );
-	
+
 	register_sidebar( array(
 		'name' => __( 'Main Sidebar', 'fruitful' ),
 		'id' => 'sidebar-1',
@@ -168,7 +168,7 @@ function fruitful_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
-	
+
 	register_sidebar( array(
 		'name' => __( 'Blog Sidebar', 'fruitful' ),
 		'id' => 'sidebar-2',
@@ -177,7 +177,7 @@ function fruitful_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
-	
+
 	register_sidebar( array(
 		'name' => __( 'Single Post Sidebar', 'fruitful' ),
 		'id' => 'sidebar-3',
@@ -186,7 +186,7 @@ function fruitful_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
-	
+
 	register_sidebar( array(
 		'name' => __( 'Homepage Sidebar', 'fruitful' ),
 		'id' => 'sidebar-4',
@@ -195,7 +195,7 @@ function fruitful_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
-	
+
 	if (class_exists('woocommerce')){
 		register_sidebar( array(
 			'name' => __( 'Shop Page Sidebar', 'fruitful' ),
@@ -205,7 +205,7 @@ function fruitful_widgets_init() {
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
 		) );
-		
+
 		register_sidebar( array(
 			'name' => __( 'Product Page Sidebar', 'fruitful' ),
 			'id' => 'sidebar-6',
@@ -229,8 +229,8 @@ function fruitful_scripts() {
 	$theme_options  = fruitful_get_theme_options();
 	$front_page_id  = get_option('page_on_front');
 	$blog_page_id   = get_option('page_for_posts ');
-	
-	
+
+
 	if (is_page() && !is_front_page() && !is_home()) {
 		$slider_layout  = get_post_meta( $post->ID, $prefix . 'slider_layout', true);
 	} elseif(!is_front_page() && is_home() && ($blog_page_id != 0)) {
@@ -238,8 +238,8 @@ function fruitful_scripts() {
 		$slider_layout  = get_post_meta( $blog_page_id, $prefix . 'slider_layout', true);
 	} elseif (is_front_page()) {
 		$slider_layout  = get_post_meta( $front_page_id, $prefix . 'slider_layout', true);
-	}	
-	
+	}
+
 	if ($slider_layout) {
 		if (isset($theme_options['select_slider'])) {
 			if ($theme_options['select_slider'] == "1") {
@@ -260,31 +260,31 @@ function fruitful_scripts() {
 			}
 		}
 	}
-	
+
 	/*add woocommerce styles for ie*/
 	wp_enqueue_style( 'ie-style', get_template_directory_uri() . '/woocommerce/ie.css');
-	
+
 	/*add fancybox*/
 	wp_enqueue_script('fn-box',				get_template_directory_uri() . '/js/fnBox/jquery.fancybox.pack.js',   array( 'jquery' ), '20140525', false );
 	wp_enqueue_style( 'fn-box-style',		get_template_directory_uri() . '/js/fnBox/jquery.fancybox.css');
-	
+
 	wp_enqueue_script('fancy-select',		get_template_directory_uri() . '/js/fancySelect.js',   array( 'jquery' ), '20140525', false );
 	wp_enqueue_style( 'fancy-select',		get_template_directory_uri() . '/css/fancySelect.css');
-	
+
 	wp_enqueue_script('resp-dropdown',		get_template_directory_uri() . '/js/mobile-dropdown.min.js', 	array( 'jquery' ), '20130930', false );
 	wp_enqueue_script('init',				get_template_directory_uri() . '/js/init.min.js', array( 'jquery' ), '20130930', false );
-	
+
 	$is_fixed_header = -1;
 	if (isset($theme_options['is_fixed_header']) && ($theme_options['is_fixed_header'] == 'on')) {
 		$is_fixed_header = 1;
 	}
-	
-	wp_localize_script( 'init', 'ThGlobal', 	array( 'ajaxurl' 				  => admin_url( 'admin-ajax.php' ), 
+
+	wp_localize_script( 'init', 'ThGlobal', 	array( 'ajaxurl' 				  => admin_url( 'admin-ajax.php' ),
 													   'is_fixed_header' 		  => $is_fixed_header,
 													   'mobile_menu_default_text' => __('Navigate to...', 'fruitful'),
-													 ) 
-					  );  
-	
+													 )
+					  );
+
 	wp_enqueue_script('small-menu-select', get_template_directory_uri() . '/js/small-menu-select.js', array( 'jquery' ), '20130930', false );
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -293,9 +293,14 @@ function fruitful_scripts() {
 		wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
 	}
 }
+
+// register AngularJS
+  wp_register_script('angular-core', 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js', array(), null, false);
 //KMA Add accordion function to be used in various postings
+   wp_enqueue_script('angular-core');
 	wp_enqueue_script( 'blueSkyProps', get_template_directory_uri() . '/js/blueSkyProps.js', array('jquery') );
 	wp_enqueue_script( 'contactExpand', get_template_directory_uri() . '/js/contactExpand.js', array('jquery'));
+   wp_enqueue_script( 'contactForm', get_template_directory_uri() . '/js/app.js', array('angular-core'));
 }
 add_action( 'wp_enqueue_scripts', 'fruitful_scripts' );
 if ( ! function_exists( 'fruitful_get_link_url' ) ) {
@@ -310,21 +315,21 @@ if ( ! function_exists( 'fruitful_get_cart_button_html' ) ) {
 	function fruitful_get_cart_button_html() {
 		$btn_cart = '';
 		$theme_options = fruitful_get_theme_options();
-		
-		if (class_exists('Woocommerce')) { 
+
+		if (class_exists('Woocommerce')) {
 			global $woocommerce;
 			if (!empty($theme_options['showcart']) && (esc_attr($theme_options['showcart']) == 'on')) {
 					$btn_cart = '<div class="cart-button">
 						<a href="'.get_permalink( woocommerce_get_page_id( 'cart' ) ).'" class="cart-contents">
-							<div class="cart_image"></div> 
+							<div class="cart_image"></div>
 							<span class="num_of_product_cart">'.$woocommerce->cart->cart_contents_count.'</span>
 						</a>
 					</div>';
 			}
-		} 
+		}
 		echo $btn_cart;
 	}
-}	
+}
 if ( ! function_exists( 'fruitful_check_gg_custom_fonts' ) ) {
 	function fruitful_check_gg_custom_fonts($inFont = null) {
 		$font_name = null;
@@ -332,7 +337,7 @@ if ( ! function_exists( 'fruitful_check_gg_custom_fonts' ) ) {
 		if (is_ssl()) {
 			$http_ = 'https://';
 		}
-		
+
 		$fonts_ = array();
 		$fonts_[] = 'fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300&subset=latin,latin-ext';
 		$fonts_[] = 'fonts.googleapis.com/css?family=Lobster&subset=cyrillic-ext,latin-ext,latin,cyrillic';
@@ -344,11 +349,11 @@ if ( ! function_exists( 'fruitful_check_gg_custom_fonts' ) ) {
 		$fonts_[] = 'fonts.googleapis.com/css?family=Ubuntu:400,300italic,400italic,500,500italic,700,700italic,300&subset=latin,greek,latin-ext,cyrillic';
 		$fonts_[] = 'fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin,cyrillic';
 		$fonts_[] = 'fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic,700';
-		$fonts_[] = 'fonts.googleapis.com/css?family=Droid+Sans:400,700';	
+		$fonts_[] = 'fonts.googleapis.com/css?family=Droid+Sans:400,700';
 		if (!empty($inFont)) {
 			$font_name = $inFont;
 			$font_name = urlencode(substr($font_name, 0, strrpos($font_name, ',')));
-			$in 	   = preg_quote($font_name, '~'); 	
+			$in 	   = preg_quote($font_name, '~');
 			$res	   = preg_grep('~' . $in . '~', $fonts_);
 			if (!empty($res)) {
 				return $http_ . current($res);
@@ -357,28 +362,28 @@ if ( ! function_exists( 'fruitful_check_gg_custom_fonts' ) ) {
 			}
 		}
 	}
-}	
-		
+}
+
 /*function for including google fonts*/
 if ( ! function_exists( 'fruitful_add_custom_fonts' ) ) {
 	function fruitful_add_custom_fonts() {
 		$font_url = array();
 		$theme_options = fruitful_get_theme_options();
-		
+
 		if (isset($theme_options['h_font_family'])) $font_url[] = fruitful_check_gg_custom_fonts(esc_attr($theme_options['h_font_family']));
 		if (isset($theme_options['m_font_family'])) $font_url[] = fruitful_check_gg_custom_fonts(esc_attr($theme_options['m_font_family']));
 		if (isset($theme_options['p_font_family'])) $font_url[] = fruitful_check_gg_custom_fonts(esc_attr($theme_options['p_font_family']));
-		
+
 		$font_url = array_filter($font_url);
 		$font_url = array_unique($font_url);
-		
+
 		if (!empty($font_url)) {
 			foreach ($font_url as $font) {
 				$unq_id = uniqid('custom_fonts_');
 				wp_register_style($unq_id, $font);
 				wp_enqueue_style($unq_id);
 			}
-		}	
+		}
 	}
 }
 /*Slider*/
@@ -386,13 +391,13 @@ if (!function_exists('fruitful_get_slider_layout_flex')) {
 	function fruitful_get_slider_layout_flex() {
 		global $post;
 		$out = "";
-		$prefix = '_fruitful_';	
+		$prefix = '_fruitful_';
 		$slider_layout = false;
 		$theme_options  = fruitful_get_theme_options();
 		$front_page_id  = get_option('page_on_front');
 		$blog_page_id   = get_option('page_for_posts ');
-	
-	
+
+
 		if (is_page() && !is_front_page() && !is_home()) {
 			$slider_layout  = get_post_meta( $post->ID, $prefix . 'slider_layout', true);
 		} elseif(!is_front_page() && is_home() && ($blog_page_id != 0)) {
@@ -400,8 +405,8 @@ if (!function_exists('fruitful_get_slider_layout_flex')) {
 			$slider_layout  = get_post_meta( $blog_page_id, $prefix . 'slider_layout', true);
 		} elseif (is_front_page()) {
 			$slider_layout  = get_post_meta( $front_page_id, $prefix . 'slider_layout', true);
-		}	
-			
+		}
+
 		if(!empty($slider_layout) && ($slider_layout)) {
 			$out .= '$(".flexslider").flexslider({';
 			$out .= 'animation: "'			. esc_attr($theme_options['s_animation'])		.'",';
@@ -412,28 +417,28 @@ if (!function_exists('fruitful_get_slider_layout_flex')) {
 			$out .= 'animationSpeed: ' 		. esc_attr($theme_options['s_animationSpeed']) 	. ',';
 			$out .= 'controlNav: ' 			. esc_attr($theme_options['s_controlnav']) 		. ',';
 			$out .= 'touch: ' 				. esc_attr($theme_options['s_touch']) 			. ',';
-			
+
 			if (isset($theme_options['s_initDelay'])) {
 				$out .= 'initDelay: ' . $theme_options['s_initDelay'] .',';
 			}
 			$out .= 'randomize: '	. $theme_options['s_randomize'];
 			$out .= '});';
 		}
-		
+
 		return $out;
-	}	  
+	}
 }
 if (!function_exists('fruitful_get_slider_layout_nivo')) {
 	function fruitful_get_slider_layout_nivo() {
 		global $post;
 		$out = "";
-		$prefix = '_fruitful_';	
+		$prefix = '_fruitful_';
 		$slider_layout = false;
 		$theme_options  = fruitful_get_theme_options();
 		$front_page_id  = get_option('page_on_front');
 		$blog_page_id   = get_option('page_for_posts ');
-	
-	
+
+
 		if (is_page() && !is_front_page() && !is_home()) {
 			$slider_layout  = get_post_meta( $post->ID, $prefix . 'slider_layout', true);
 		} elseif(!is_front_page() && is_home() && ($blog_page_id != 0)) {
@@ -441,8 +446,8 @@ if (!function_exists('fruitful_get_slider_layout_nivo')) {
 			$slider_layout  = get_post_meta( $blog_page_id, $prefix . 'slider_layout', true);
 		} elseif (is_front_page()) {
 			$slider_layout  = get_post_meta( $front_page_id, $prefix . 'slider_layout', true);
-		}	
-		
+		}
+
 		if(!empty($slider_layout) && ($slider_layout)){
 			$out .= '$(".nivoSlider").nivoSlider({' . "\n";
 			$out .= 'effect: "'				. esc_attr($theme_options['nv_animation'])		. '",';
@@ -462,7 +467,7 @@ if (!function_exists('fruitful_get_slider_layout_nivo')) {
 			$out .= 'randomStart: '			. esc_attr($theme_options['nv_randomStart']);
 			$out .= '});';
 		}
-		
+
 		return $out;
 	}
 }
@@ -472,13 +477,13 @@ if (!function_exists('fruitful_get_slider')) {
 		global $post;
 		$prefix 	= '_fruitful_';
 		$slider_  	= $slider_layout = '';
-		$id 		= 'fruitful-slider-'.rand(1, 250); 	
-		
+		$id 		= 'fruitful-slider-'.rand(1, 250);
+
 		$theme_options  = fruitful_get_theme_options();
 		$front_page_id  = get_option('page_on_front');
 		$blog_page_id   = get_option('page_for_posts ');
-	
-	
+
+
 		if (is_page() && !is_front_page() && !is_home()) {
 			$slider_layout  = get_post_meta( $post->ID, $prefix . 'slider_layout', true);
 		} elseif(!is_front_page() && is_home() && ($blog_page_id != 0)) {
@@ -486,8 +491,8 @@ if (!function_exists('fruitful_get_slider')) {
 			$slider_layout  = get_post_meta( $blog_page_id, $prefix  . 'slider_layout', true);
 		} elseif (is_front_page()) {
 			$slider_layout  = get_post_meta( $front_page_id, $prefix . 'slider_layout', true);
-		}	
-		
+		}
+
 		/*Full Backend Options*/
 		if(!empty($theme_options['slides']) && (count($theme_options['slides']) > 0)) {
 			foreach ($theme_options['slides'] as $key=>$slide) {
@@ -495,10 +500,10 @@ if (!function_exists('fruitful_get_slider')) {
 				$val = wp_get_attachment_image_src( esc_attr($slide['attach_id']), 'main-slider');
 				$path_to_img = esc_url_raw($val[0]);
 			}
-			
+
 			if ($path_to_img){
 				if ($theme_options['select_slider'] == "1") {
-						
+
 						if ($slider_layout == 1) {
 							$slider_ .= '<div class="main-slider-container fullwidth">';
 						} else {
@@ -516,24 +521,24 @@ if (!function_exists('fruitful_get_slider')) {
 													$slider_ .= '<a href="'.esc_url($slide['link']).'" target="_blank">';
 												} else {
 													$slider_ .= '<a href="'.esc_url($slide['link']).'">';
-												}	
+												}
 													$slider_ .= '<img src="'.$path_to_img.'" />';
-												$slider_ .= '</a>';	
+												$slider_ .= '</a>';
 											} else {
 												$slider_ .= '<img src="'.$path_to_img.'" />';
 											}
 										$slider_ .= '</li>';
 									}
 									$slider_ .= '</ul></div></section></div>';
-									
+
 				} else if ($theme_options['select_slider'] == "2") {
-						
+
 						if ($slider_layout == 1) {
 							$slider_ .= '<div class="main-slider-container slider-wrapper fullwidth '. $theme_options['nv_skins'] .'">';
 						} else {
-							$slider_ .= '<div class="main-slider-container slider-wrapper '. $theme_options['nv_skins'] .'">'; 
+							$slider_ .= '<div class="main-slider-container slider-wrapper '. $theme_options['nv_skins'] .'">';
 						}
-						
+
 							$slider_ .= '<div id="nivo-slider-'. $id . '" class="nivoSlider">';
 							foreach ($theme_options['slides'] as $key=>$slide) {
 								$val = wp_get_attachment_image_src( esc_attr($slide['attach_id']), 'main-slider');
@@ -543,16 +548,16 @@ if (!function_exists('fruitful_get_slider')) {
 										$slider_ .= '<a href="'.esc_url($slide['link']).'" target="_blank">';
 									} else {
 										$slider_ .= '<a href="'.esc_url($slide['link']).'">';
-									}	
+									}
 										$slider_ .= '<img src="'. $path_to_img .'" data-thumb="'. $path_to_img .'" alt="" />';
-									$slider_ .= '</a>';	
+									$slider_ .= '</a>';
 								} else {
 									$slider_ .= '<img src="'. $path_to_img .'" data-thumb="'. $path_to_img .'" alt="" />';
 								}
-							}	
+							}
 							$slider_ .= '</div>';
 						$slider_ .= '</div>';
-				}	
+				}
 			} else {
 				$slider_ = '<div class="main-slider-container">';
 					$slider_ .= '<section class="slider"><h3 class="no-slider-text">'. __('Please add images for slider in theme options!', 'fruitful') .'</h3></section>';
@@ -563,11 +568,11 @@ if (!function_exists('fruitful_get_slider')) {
 				$slider_ .= '<section class="slider"><h3 class="no-slider-text">'. __('Please add images for slider in theme options!', 'fruitful') .'</h3></section>';
 			$slider_ .= '</div>';
 		}
-		
+
 		if (!empty($slider_layout)) {
 			if ($slider_layout != 1) {
 				$slider_ = '<div class="container"><div class="sixteen columns">' . $slider_ . '</div></div>';
-			} 
+			}
 			echo '<div id="slider-container">'.$slider_.'</div>';
 		}
 	}
@@ -579,19 +584,19 @@ if (!function_exists('fruitful_get_logo')) {
 		if (!empty($theme_options['logo_w'])) {$logo_w = intval($theme_options['logo_w']); }
 		if (!empty($theme_options['logo_h'])) {$logo_h = intval($theme_options['logo_h']); }
 		$url_logo = $url_retina_logo = '';
-	
+
 		if (!empty($theme_options['logo_img'])) { $url_logo_id	= esc_attr($theme_options['logo_img']); } else { $url_logo_id 	= ''; }
 		if (!empty($logo_w)) { $logo_width	= $logo_w; } else { $logo_width 	= ''; }
-		if (!empty($logo_h)) { $logo_height = $logo_h; } else { $logo_height 	= ''; }		
+		if (!empty($logo_h)) { $logo_height = $logo_h; } else { $logo_height 	= ''; }
 		if (!empty($theme_options['logo_img_retina'])) { $url_retina_logo_id	= esc_attr($theme_options['logo_img_retina']); } else { $url_retina_logo_id 	= ''; }
 		if (!empty($logo_w)) { $logo_retina_width	= $logo_width; } else { $logo_retina_width 	= ''; }
-		if (!empty($logo_h)) { $logo_retina_height = $logo_height; } else { $logo_retina_height 	= ''; }	
-	
+		if (!empty($logo_h)) { $logo_retina_height = $logo_height; } else { $logo_retina_height 	= ''; }
+
 		/*Full Backend Options*/
 		$description  = $name = '';
 		$description  = esc_attr(get_bloginfo('description'));
 		$name  		  = esc_attr(get_bloginfo('name'));
-	
+
 		if (!empty($url_logo_id) || !empty($url_retina_logo_id)) {
 			 $url_logo = wp_get_attachment_image_src($url_logo_id, 'full');
 			 if (!empty($url_logo)) {
@@ -599,23 +604,23 @@ if (!function_exists('fruitful_get_logo')) {
 			 }
 			 else {
 				$image_link = $url_logo_id;
-			 }			
-			
+			 }
+
 			 $url_retina_logo = wp_get_attachment_image_src($url_retina_logo_id, 'full');
 			 if (!empty($url_retina_logo)) {
 				$image_link_retina = esc_url_raw($url_retina_logo[0]);
 			 }
 			 else {
 				$image_link_retina = $url_retina_logo_id;
-			 }	
+			 }
 			if (!empty($url_logo_id)) 	echo  '<a class="link-logo" href="' . esc_url( home_url( '/' ) ) . '" title="' . $description .'" rel="home"><img class="logo" src="'. $image_link  .'" width="' . $logo_width . '" height="' . $logo_height . '" alt="' . $description . '"/></a>';
 			if (!empty($url_retina_logo_id)) echo  '<a class="link-logo-retina" href="' . esc_url( home_url( '/' ) ) . '" title="' . $description .'" rel="home"><img class="logo retina" src="'. $image_link_retina	  .'" width="' . $logo_retina_width . '" height="' . $logo_retina_height . '" alt="' . $description . '"/></a>';
 			if (!empty($url_logo_id) && empty($url_retina_logo_id)) echo  '<a class="link-logo-retina" href="' . esc_url( home_url( '/' ) ) . '" title="' . $description .'" rel="home"><img class="logo retina" src="'. $image_link  .'" width="' . $logo_retina_width . '" height="' . $logo_retina_height . '" alt="' . $description . '"/></a>';
-			if (empty($url_logo_id) && !empty($url_retina_logo_id)) echo  '<a class="link-logo" href="' . esc_url( home_url( '/' ) ) . '" title="' . $description .'" rel="home"><img class="logo" src="'. $image_link_retina  .'" width="' . $logo_width . '" height="' . $logo_height . '" alt="' . $description . '"/></a>';								
-			
+			if (empty($url_logo_id) && !empty($url_retina_logo_id)) echo  '<a class="link-logo" href="' . esc_url( home_url( '/' ) ) . '" title="' . $description .'" rel="home"><img class="logo" src="'. $image_link_retina  .'" width="' . $logo_width . '" height="' . $logo_height . '" alt="' . $description . '"/></a>';
+
 		} else {
 			echo  '<a class="logo-description" href="' . esc_url( home_url( '/' ) ) . '" title="' . $description .'" rel="home"><h1 class="site-title">'. $name .'</h1><h2 class="site-description">'. $description .'</h2></a>';
-		}	
+		}
 	}
 }
 /*Get Favicon*/
@@ -624,7 +629,7 @@ if (!function_exists('fruitful_get_favicon')) {
 		$out_fav_html 	= null;
 		$url_favicon = $fav_icon_iphone = $fav_icon_iphone_retina = $fav_icon_ipad = $fav_icon_ipad_retina = null;
 		$theme_options  = fruitful_get_theme_options();
-		
+
 		if (isset($theme_options['fav_icon'])) {
 			$fav_icon_url = esc_attr($theme_options['fav_icon']);
 			$fav_icon_id = wp_get_attachment_image_src($fav_icon_url, 'full');
@@ -633,12 +638,12 @@ if (!function_exists('fruitful_get_favicon')) {
 			 }
 			 else {
 				$image_link = $fav_icon_url;
-			 }	
-			
-			$out_fav_html .=  '<link rel="shortcut icon" href="'. esc_url($image_link) .'">';	
-			$out_fav_html .=  '<link rel="apple-touch-icon-precomposed" sizes="16x16" href="'. $image_link .'">';	
-		} 	
-		
+			 }
+
+			$out_fav_html .=  '<link rel="shortcut icon" href="'. esc_url($image_link) .'">';
+			$out_fav_html .=  '<link rel="apple-touch-icon-precomposed" sizes="16x16" href="'. $image_link .'">';
+		}
+
 		if (isset($theme_options['fav_icon_iphone'])) {
 			$fav_icon_iphone_url = esc_attr($theme_options['fav_icon_iphone']);
 			$fav_icon_iphone_id = wp_get_attachment_image_src($fav_icon_iphone_url, 'full');
@@ -647,11 +652,11 @@ if (!function_exists('fruitful_get_favicon')) {
 			 }
 			 else {
 				$image_link = $fav_icon_iphone_url;
-			 }				
-			
+			 }
+
 			$out_fav_html .= '<link rel="apple-touch-icon" 	href="' .esc_url($image_link) .'">';
 		}
-		
+
 		if (isset($theme_options['fav_icon_iphone_retina'])) {
 			$fav_icon_iphone_retina_url = esc_attr($theme_options['fav_icon_iphone_retina']);
 			$fav_icon_iphone_retina_id = wp_get_attachment_image_src($fav_icon_iphone_retina_url, 'full');
@@ -661,10 +666,10 @@ if (!function_exists('fruitful_get_favicon')) {
 			 else {
 				$image_link = $fav_icon_iphone_retina_url;
 			 }
-			
+
 			$out_fav_html .= '<link rel="apple-touch-icon" sizes="114x114" 	href="'. esc_url($image_link) .' ">';
 		}
-		
+
 		if (isset($theme_options['fav_icon_ipad'])) {
 			$fav_icon_ipad_url = esc_attr($theme_options['fav_icon_ipad']);
 			$fav_icon_ipad_id = wp_get_attachment_image_src($fav_icon_ipad_url, 'full');
@@ -673,11 +678,11 @@ if (!function_exists('fruitful_get_favicon')) {
 			 }
 			 else {
 				$image_link = $fav_icon_ipad_url;
-			 }	
-			
-			$out_fav_html .= '<link rel="apple-touch-icon" sizes="72x72" 	href="'. esc_url($image_link) .'">'; 
+			 }
+
+			$out_fav_html .= '<link rel="apple-touch-icon" sizes="72x72" 	href="'. esc_url($image_link) .'">';
 		}
-		
+
 		if (isset($theme_options['fav_icon_ipad_retina'])) {
 			$fav_icon_ipad_retina_url = esc_attr($theme_options['fav_icon_ipad_retina']);
 			$fav_icon_ipad_retina_id = wp_get_attachment_image_src($fav_icon_ipad_retina_url, 'full');
@@ -686,11 +691,11 @@ if (!function_exists('fruitful_get_favicon')) {
 			 }
 			 else {
 				$image_link = $fav_icon_ipad_retina_url;
-			 }		
-			
-			$out_fav_html .= '<link rel="apple-touch-icon" sizes="144x144" 	href="'. esc_url($image_link) .'">'; 
+			 }
+
+			$out_fav_html .= '<link rel="apple-touch-icon" sizes="144x144" 	href="'. esc_url($image_link) .'">';
 		}
-		
+
 		echo $out_fav_html;
 	}
 }
@@ -698,27 +703,27 @@ if (!function_exists('fruitful_get_favicon')) {
 if (!function_exists('fruitful_get_footer_text')) {
 	function fruitful_get_footer_text () {
 		$out_footer_text = $footer_text = '';
-		$theme_options   = fruitful_get_theme_options(); 
+		$theme_options   = fruitful_get_theme_options();
 		if (!empty($theme_options['footer_text'])) {
 			$footer_text = fruitful_kses_data(stripslashes($theme_options['footer_text']));
-			
+
 			if (is_home() || is_front_page()) {
 				$out_footer_text .= $footer_text;
 			} else {
 				$out_footer_text .= '<nofollow>';
 					$out_footer_text .= $footer_text;
 				$out_footer_text .= '</nofollow>';
-				
-			}		
+
+			}
 		echo $out_footer_text;
-		}	
+		}
 	}
 }
 /*Get position for social icons*/
 if (!function_exists('fruitful_is_social_header')) {
 	function fruitful_is_social_header () {
 		$pos = false;
-		$theme_options  = fruitful_get_theme_options(); 
+		$theme_options  = fruitful_get_theme_options();
 		if(!empty($theme_options['sl_position']))	{ $pos =  esc_attr($theme_options['sl_position']); }
 		return $pos;
 	}
@@ -727,62 +732,62 @@ if (!function_exists('fruitful_is_social_header')) {
 if (!function_exists('fruitful_get_socials_icon')) {
 	function fruitful_get_socials_icon () {
 		$out = '';
-		$theme_options  = fruitful_get_theme_options(); 
-		
+		$theme_options  = fruitful_get_theme_options();
+
 		if(!empty($theme_options['facebook_url'])) 		{ $out .= '<a class="facebook" 	 title="facebook"	href="'	.	esc_url($theme_options['facebook_url']) 	. '" target="_blank"><i class="fa"></i></a>'; }
 		if(!empty($theme_options['twitter_url']))		{ $out .= '<a class="twitter" 	 title="twitter"	href="'	.	esc_url($theme_options['twitter_url']) 		. '" target="_blank"><i class="fa"></i></a>'; }
 		if(!empty($theme_options['linkedin_url'])) 		{ $out .= '<a class="linkedin" 	 title="linkedin"	href="'	.	esc_url($theme_options['linkedin_url']) 	. '" target="_blank"><i class="fa"></i></a>'; }
-		if(!empty($theme_options['myspace_url'])) 		{ $out .= '<a class="myspace" 	 title="myspace"	href="'	.	esc_url($theme_options['myspace_url']) 		. '" target="_blank"></a>'; }	
-		if(!empty($theme_options['googleplus_url'])) 	{ $out .= '<a class="googleplus" title="google+"	href="'	.	esc_url($theme_options['googleplus_url']) 	. '" target="_blank"><i class="fa"></i></a>'; }		
-		if(!empty($theme_options['dribbble_url'])) 	 	{ $out .= '<a class="dribbble" 	 title="dribbble"	href="'	.	esc_url($theme_options['dribbble_url']) 	. '" target="_blank"><i class="fa"></i></a>'; }		
-		if(!empty($theme_options['skype_link'])) 		{ $out .= '<a class="skype" 	 title="skype"		href="skype:'.esc_attr($theme_options['skype_link'])	. '?call"><i class="fa"></i></a>'; }		
-		if(!empty($theme_options['flickr_link'])) 		{ $out .= '<a class="flickr" 	 title="flickr"		href="' 	.esc_url($theme_options['flickr_link']) 	. '" target="_blank"><i class="fa"></i></a>'; }		
-		if(!empty($theme_options['youtube_url'])) 		{ $out .= '<a class="youtube" 	 title="youtube"	href="'	.	esc_url($theme_options['youtube_url']) 		. '" target="_blank"><i class="fa"></i></a>'; }		
-		if(!empty($theme_options['vimeo_url'])) 		{ $out .= '<a class="vimeo" 	 title="vimeo"		href="'	.	esc_url($theme_options['vimeo_url']) 		. '" target="_blank"><i class="fa"></i></a>'; }		
-		if(!empty($theme_options['rss_link'])) 			{ $out .= '<a class="rss" 		 title="rss"		href="'	.	esc_url($theme_options['rss_link']) 		. '" target="_blank"><i class="fa"></i></a>'; }			
-		if(!empty($theme_options['vk_link'])) 			{ $out .= '<a class="vk" 		 title="vk"			href="'	.	esc_url($theme_options['vk_link'])			. '" target="_blank"><i class="fa"></i></a>'; }			
-		if(!empty($theme_options['instagram_url']))		{ $out .= '<a class="instagram"	 title="instagram"	href="'	.	esc_url($theme_options['instagram_url'])	. '" target="_blank"><i class="fa"></i></a>'; }			
-		if(!empty($theme_options['pinterest_url']))		{ $out .= '<a class="pinterest"	 title="pinterest"	href="'	.	esc_url($theme_options['pinterest_url'])	. '" target="_blank"><i class="fa"></i></a>'; }			
-		if(!empty($theme_options['yelp_url']))			{ $out .= '<a class="yelp"		 title="yelp"		href="'	.	esc_url($theme_options['yelp_url'])			. '" target="_blank"></a>'; }			
-		if(!empty($theme_options['email_link'])) 		{ $out .= '<a class="email" 	 title="email"		href="mailto:'.sanitize_email($theme_options['email_link']). '"><i class="fa"></i></a>'; }			
-		if(!empty($theme_options['github_link'])) 		{ $out .= '<a class="github" 	 title="github"		href="'	.	esc_url($theme_options['github_link']) 		. '" target="_blank"><i class="fa"></i></a>'; }			
-		if(!empty($theme_options['tumblr_link'])) 		{ $out .= '<a class="tumblr" 	 title="tumblr"		href="'	.	esc_url($theme_options['tumblr_link']) 		. '" target="_blank"><i class="fa"></i></a>'; }			
-		if(!empty($theme_options['soundcloud_link'])) 	{ $out .= '<a class="soundcloud" title="soundcloud" href="'	.	esc_url($theme_options['soundcloud_link']) 	. '" target="_blank"><i class="fa"></i></a>'; }		
-		if(!empty($theme_options['tripadvisor_link'])) 	{ $out .= '<a class="tripadvisor" title="tripadvisor" href="'	.	esc_url($theme_options['tripadvisor_link']) 	. '" target="_blank"><i class="fa"></i></a>'; }			
-		
+		if(!empty($theme_options['myspace_url'])) 		{ $out .= '<a class="myspace" 	 title="myspace"	href="'	.	esc_url($theme_options['myspace_url']) 		. '" target="_blank"></a>'; }
+		if(!empty($theme_options['googleplus_url'])) 	{ $out .= '<a class="googleplus" title="google+"	href="'	.	esc_url($theme_options['googleplus_url']) 	. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['dribbble_url'])) 	 	{ $out .= '<a class="dribbble" 	 title="dribbble"	href="'	.	esc_url($theme_options['dribbble_url']) 	. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['skype_link'])) 		{ $out .= '<a class="skype" 	 title="skype"		href="skype:'.esc_attr($theme_options['skype_link'])	. '?call"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['flickr_link'])) 		{ $out .= '<a class="flickr" 	 title="flickr"		href="' 	.esc_url($theme_options['flickr_link']) 	. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['youtube_url'])) 		{ $out .= '<a class="youtube" 	 title="youtube"	href="'	.	esc_url($theme_options['youtube_url']) 		. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['vimeo_url'])) 		{ $out .= '<a class="vimeo" 	 title="vimeo"		href="'	.	esc_url($theme_options['vimeo_url']) 		. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['rss_link'])) 			{ $out .= '<a class="rss" 		 title="rss"		href="'	.	esc_url($theme_options['rss_link']) 		. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['vk_link'])) 			{ $out .= '<a class="vk" 		 title="vk"			href="'	.	esc_url($theme_options['vk_link'])			. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['instagram_url']))		{ $out .= '<a class="instagram"	 title="instagram"	href="'	.	esc_url($theme_options['instagram_url'])	. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['pinterest_url']))		{ $out .= '<a class="pinterest"	 title="pinterest"	href="'	.	esc_url($theme_options['pinterest_url'])	. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['yelp_url']))			{ $out .= '<a class="yelp"		 title="yelp"		href="'	.	esc_url($theme_options['yelp_url'])			. '" target="_blank"></a>'; }
+		if(!empty($theme_options['email_link'])) 		{ $out .= '<a class="email" 	 title="email"		href="mailto:'.sanitize_email($theme_options['email_link']). '"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['github_link'])) 		{ $out .= '<a class="github" 	 title="github"		href="'	.	esc_url($theme_options['github_link']) 		. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['tumblr_link'])) 		{ $out .= '<a class="tumblr" 	 title="tumblr"		href="'	.	esc_url($theme_options['tumblr_link']) 		. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['soundcloud_link'])) 	{ $out .= '<a class="soundcloud" title="soundcloud" href="'	.	esc_url($theme_options['soundcloud_link']) 	. '" target="_blank"><i class="fa"></i></a>'; }
+		if(!empty($theme_options['tripadvisor_link'])) 	{ $out .= '<a class="tripadvisor" title="tripadvisor" href="'	.	esc_url($theme_options['tripadvisor_link']) 	. '" target="_blank"><i class="fa"></i></a>'; }
+
 		echo '<div class="social-icon">' . $out . '</div>';
 	}
 }
 /*Enable Comment*/
 if ( ! function_exists( 'fruitful_state_post_comment' ) ) {
 	function fruitful_state_post_comment () {
-		$theme_options  = fruitful_get_theme_options(); 
+		$theme_options  = fruitful_get_theme_options();
 		if (!empty($theme_options['postcomment'])) {
 			return ($theme_options['postcomment'] == "on");
 		} else {
 			return false;
-		}	
+		}
 	}
 }
 if ( ! function_exists( 'fruitful_state_page_comment' ) ) {
 	function fruitful_state_page_comment () {
-		$theme_options  = fruitful_get_theme_options(); 
+		$theme_options  = fruitful_get_theme_options();
 		if (!empty($theme_options['pagecomment'])) {
 			return ($theme_options['pagecomment'] == "on");
 		} else {
 			return false;
-		}	
+		}
 	}
 }
 /*Compress code*/
-if ( ! function_exists( 'fruitful_compress_code' ) ) {				
+if ( ! function_exists( 'fruitful_compress_code' ) ) {
 	function fruitful_compress_code($code) {
 		$code = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $code);
 		$code = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $code);
-    
+
 		return $code;
 	}
-}  
+}
 if ( ! function_exists( 'fruitful_hex2rgb' ) ) {
 	function fruitful_hex2rgb( $colour ) {
 		if ( $colour[0] == '#' ) {
@@ -800,11 +805,11 @@ if ( ! function_exists( 'fruitful_hex2rgb' ) ) {
 		$b = hexdec( $b );
 		return array( 'red' => $r, 'green' => $g, 'blue' => $b );
 	}
-}	
+}
 if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 	function fruitful_get_responsive_style () {
 		$style_ = $back_style = $woo_style_ = '';
-		$theme_options  = fruitful_get_theme_options(); 
+		$theme_options  = fruitful_get_theme_options();
 		fruitful_add_custom_fonts();
 		if (isset($theme_options['responsive']) && ($theme_options['responsive'] == 'on')) {
 			if (class_exists('woocommerce')){wp_enqueue_style( 'woo-style', get_template_directory_uri() . '/woocommerce/woo.css');}
@@ -819,149 +824,149 @@ if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 			}
 			wp_enqueue_style('main-style',  get_stylesheet_directory_uri()  .'/fixed-style.css');
 		}
-	 
+
 		//if (!empty($theme_options['styletheme'])) {
 			//if ($theme_options['styletheme'] == 'off') {
-				
+
 				$style_ .= 'h1 {font-size : '.esc_attr($theme_options['h1_size']) .'px; }' . "\n";
 				$style_ .= 'h2 {font-size : '.esc_attr($theme_options['h2_size']) .'px; }' . "\n";
 				$style_ .= 'h3 {font-size : '.esc_attr($theme_options['h3_size']) .'px; }' . "\n";
 				$style_ .= 'h4 {font-size : '.esc_attr($theme_options['h4_size']) .'px; }' . "\n";
 				$style_ .= 'h5 {font-size : '.esc_attr($theme_options['h5_size']) .'px; }' . "\n";
 				$style_ .= 'h6 {font-size : '.esc_attr($theme_options['h6_size']) .'px; }' . "\n";
-	 
+
 				$style_ .= 'h1, h2, h3, h4, h5, h6 {font-family : '. esc_attr($theme_options['h_font_family']) .'; } ' . "\n";
 				$style_ .= '.main-navigation a     {font-family : '. esc_attr($theme_options['m_font_family']) .'; color : '.esc_attr($theme_options['menu_font_color']). '; } ' . "\n";
 				$style_ .= '.main-navigation ul:not(.sub-menu) > li > a, .main-navigation ul:not(.sub-menu) > li:hover > a   { font-size : '.esc_attr($theme_options['m_size']) .'px;    } ' . "\n";
-				
-				
+
+
 				if (!empty($theme_options['menu_bg_color']))   { $style_ .= '.main-navigation {background-color : ' .esc_attr($theme_options['menu_bg_color']) . '; }' . "\n";  }
-	   
+
 				$style_ .= '#header_language_select a {font-family : '.  esc_attr($theme_options['m_font_family']) .';} ' . "\n";
 				$style_ .= 'body {font-size : '. esc_attr($theme_options['p_size']) .'px; font-family : ' . esc_attr($theme_options['p_font_family']) . '; }' . "\n";
-	 
-	  
+
+
 				if(!empty($theme_options['background_color']))  { $back_style .= ' background-color : '. esc_attr($theme_options['background_color']) .'; '; }
-				if(!empty($theme_options['backgroung_img']))    { 
-					$bg_url = esc_attr($theme_options['backgroung_img']); 
-					$image_attributes = wp_get_attachment_image_src($bg_url, 'full'); 
-	
+				if(!empty($theme_options['backgroung_img']))    {
+					$bg_url = esc_attr($theme_options['backgroung_img']);
+					$image_attributes = wp_get_attachment_image_src($bg_url, 'full');
+
 					 if (!empty($image_attributes)) {
 						$image_link = esc_url_raw($image_attributes[0]);
 					 }
 					 else {
 						$image_link = $bg_url;
-					 }	
-					
-					if(isset($theme_options['bg_repeating']) && ($theme_options['bg_repeating'] == 'on')) { 
-						$back_style .= 'background-image : url(' .$image_link .'); background-repeat : repeat; ';  
+					 }
+
+					if(isset($theme_options['bg_repeating']) && ($theme_options['bg_repeating'] == 'on')) {
+						$back_style .= 'background-image : url(' .$image_link .'); background-repeat : repeat; ';
 					} else {
-						$back_style .= 'background-image : url(' .$image_link .'); background-repeat : no-repeat; background-size:100% 100%; background-size:cover; background-attachment:fixed; ';  
+						$back_style .= 'background-image : url(' .$image_link .'); background-repeat : no-repeat; background-size:100% 100%; background-size:cover; background-attachment:fixed; ';
 					}
 				}
 				$style_ .= 'body {'. $back_style .'}' . "\n";
-	 
+
 				if(!empty($theme_options['container_bg_color']))  {
 					$style_ .= '.page-container .container {background-color : '. esc_attr($theme_options['container_bg_color']) . '; } ' . "\n";
 				}
-	 
+
 				/*Header styles*/
 				if (($theme_options['header_bg_color']) != null)   { $style_ .= '.head-container, .head-container.fixed  {background-color : ' .esc_attr($theme_options['header_bg_color']) . '; }' . "\n";  }
 				if (!empty($theme_options['header_img']))    {
-					$header_url = wp_get_attachment_image_src(intval($theme_options['header_img']), 'full'); 
+					$header_url = wp_get_attachment_image_src(intval($theme_options['header_img']), 'full');
 					 if (!empty($header_url)) {
 						$image_link = esc_url_raw($header_url[0]);
 					 }
 					 else {
 						$image_link = $theme_options['header_img'];
-					 }	
-					$style_ .= '.head-container {background-image : url(' .esc_attr($image_link) . '); } ' . "\n";  
-					
+					 }
+					$style_ .= '.head-container {background-image : url(' .esc_attr($image_link) . '); } ' . "\n";
+
 					if (!empty($theme_options['header_img_size'])){
 						if ($theme_options['header_img_size'] == 'full'){
-							$style_ .= '.head-container {background-size :cover; background-position:center center;} ' . "\n";  
+							$style_ .= '.head-container {background-size :cover; background-position:center center;} ' . "\n";
 						} else {
 							$style_ .= '@media only screen and (max-width:480px){'."\n";
-								$style_ .= '.head-container {background-size :300px; background-position:top center;} ' . "\n"; 
+								$style_ .= '.head-container {background-size :300px; background-position:top center;} ' . "\n";
 							$style_ .= '}'."\n";
 							$style_ .= '@media only screen and (min-width:481px) and (max-width:767px){'."\n";
-								$style_ .= '.head-container {background-size :420px; background-position:top center;} ' . "\n"; 
+								$style_ .= '.head-container {background-size :420px; background-position:top center;} ' . "\n";
 							$style_ .= '}'."\n";
 							$style_ .= '@media only screen and (min-width:768px) and (max-width:959px){'."\n";
-								$style_ .= '.head-container {background-size :768px; background-position:top center;} ' . "\n"; 
+								$style_ .= '.head-container {background-size :768px; background-position:top center;} ' . "\n";
 							$style_ .= '}'."\n";
 							$style_ .= '@media only screen and (min-width:960px){'."\n";
-								$style_ .= '.head-container {background-size :960px; background-position:top center;} ' . "\n"; 
+								$style_ .= '.head-container {background-size :960px; background-position:top center;} ' . "\n";
 							$style_ .= '}'."\n";
 						}
 					}
 				}
 				if (!empty($theme_options['header_height'])) {
-					$style_ .= '.head-container {min-height : '.esc_attr($theme_options['header_height']).'px; }' . "\n";  
+					$style_ .= '.head-container {min-height : '.esc_attr($theme_options['header_height']).'px; }' . "\n";
 				}
 				if (!empty($theme_options['is_fixed_header'])) {
 					if (isset($theme_options['is_fixed_header']) && ($theme_options['is_fixed_header'] == 'on')) {
-						$style_ .= '.head-container {position : fixed; }' . "\n";  
+						$style_ .= '.head-container {position : fixed; }' . "\n";
 					} else {
-						$style_ .= '.head-container {position : relative; }' . "\n";  
+						$style_ .= '.head-container {position : relative; }' . "\n";
 					}
 				}
 				if (!empty($theme_options['logo_h'])) {
-					$style_ .= '.site-header img {max-height : '.esc_attr($theme_options['logo_h']).'px; }' . "\n";  
+					$style_ .= '.site-header img {max-height : '.esc_attr($theme_options['logo_h']).'px; }' . "\n";
 				}
 				if (!empty($theme_options['logo_retina_h'])) {
-					$style_ .= '.site-header img {max-height : '.esc_attr($theme_options['logo_retina_h']).'px; }' . "\n";  
+					$style_ .= '.site-header img {max-height : '.esc_attr($theme_options['logo_retina_h']).'px; }' . "\n";
 				}
 				/*end of header styles*/
-				
+
 				if (!empty($theme_options['menu_btn_color']))    { $style_ .= '.main-navigation ul li.current_page_item a, .main-navigation ul li.current-menu-ancestor a, .main-navigation ul li.current-menu-item a, .main-navigation ul li.current-menu-parent a, .main-navigation ul li.current_page_parent a {background-color : '.esc_attr($theme_options['menu_btn_color']) . '; }' . "\n";  }
 				if (!empty($theme_options['menu_hover_color']))  { $style_ .= '.main-navigation ul li.current_page_item a, .main-navigation ul li.current-menu-ancestor a, .main-navigation ul li.current-menu-item a, .main-navigation ul li.current-menu-parent a, .main-navigation ul li.current_page_parent a {color : '.esc_attr($theme_options['menu_hover_color']) . '; } ' . "\n";  }
-	  
+
 				$style_ .= '.main-navigation ul > li:hover>a {' . "\n";
 					if (!empty($theme_options['menu_btn_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['menu_btn_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['menu_hover_color']))  { $style_ .= 'color : '.esc_attr($theme_options['menu_hover_color']) . ';  ' . "\n"; }
-				$style_ .= ' } ' . "\n"; 
-	  
+				$style_ .= ' } ' . "\n";
+
 				/*styles for dropdown menu*/
 				$style_ .= '#masthead .main-navigation ul > li > ul > li > a {' . "\n";
 					if (!empty($theme_options['dd_menu_bg_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_bg_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_font_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_font_color']) . ';  ' . "\n"; }
-				$style_ .= ' } ' . "\n"; 
+				$style_ .= ' } ' . "\n";
 				$style_ .= '#masthead .main-navigation ul > li > ul > li:hover > a {' . "\n";
 					if (!empty($theme_options['dd_menu_btn_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_btn_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_hover_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_hover_color']) . ';  ' . "\n"; }
-				$style_ .= ' } ' . "\n"; 
-				
+				$style_ .= ' } ' . "\n";
+
 				$style_ .= '#masthead .main-navigation ul > li ul > li.current-menu-item > a {' . "\n";
 					if (!empty($theme_options['dd_menu_btn_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_btn_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_hover_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_hover_color']) . ';  ' . "\n"; }
-				$style_ .= ' } ' . "\n"; 
-				
+				$style_ .= ' } ' . "\n";
+
 				$style_ .= '#masthead div .main-navigation ul > li > ul > li > ul a {' . "\n";
 					if (!empty($theme_options['dd_menu_bg_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_bg_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_font_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_font_color']) . ';  ' . "\n"; }
-				$style_ .= ' } ' . "\n"; 
+				$style_ .= ' } ' . "\n";
 				$style_ .= '#masthead div .main-navigation ul > li > ul > li  ul li:hover a {' . "\n";
 					if (!empty($theme_options['dd_menu_btn_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_btn_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_hover_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_hover_color']) . ';  ' . "\n"; }
-				$style_ .= ' } ' . "\n"; 
-					
+				$style_ .= ' } ' . "\n";
+
 				$style_ .= '#lang-select-block li ul li a{'. "\n";
 					if (!empty($theme_options['dd_menu_bg_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_bg_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_font_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_font_color']) . ';  ' . "\n"; }
 				$style_ .= '}' . "\n";
-				
+
 				$style_ .= '#lang-select-block li ul li a:hover{'. "\n";
 					if (!empty($theme_options['dd_menu_btn_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_btn_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_hover_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_hover_color']) . ';  ' . "\n"; }
 				$style_ .= '}' . "\n";
-				
+
 				$style_ .= '#lang-select-block li ul li.active a{'. "\n";
 					if (!empty($theme_options['dd_menu_btn_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['dd_menu_btn_color']) . '; ' . "\n"; }
 					if (!empty($theme_options['dd_menu_hover_color']))  { $style_ .= 'color : '.esc_attr($theme_options['dd_menu_hover_color']) . ';  ' . "\n"; }
 				$style_ .= '}' . "\n";
 				/*end of styles for dropdown menu*/
-				
+
 				/*styles for responsive full width menu*/
 				if (!empty($theme_options['menu_type_responsive']) && ($theme_options['menu_type_responsive'] == 'full_width')) {
 					$style_ .= '.resp_full_width_menu .site-header .menu_wrapper{'. "\n";
@@ -978,82 +983,82 @@ if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 					$style_ .= '}' . "\n";
 				}
 				/*end of styles for responsive full width menu*/
-	  
+
 				$style_ .= '#header_language_select ul li.current > a { color : '.esc_attr($theme_options['menu_font_color']). '; } ' . "\n";
 				if (!empty($theme_options['menu_bg_color'])) { $style_ .= '#header_language_select { background-color : '.esc_attr($theme_options['menu_bg_color']) . '; } ' . "\n";  }
-	  
+
 				$style_ .= '#header_language_select ul li.current:hover > a { ' . "\n";
 					if (!empty($theme_options['menu_btn_color']))    { $style_ .= 'background-color : '. esc_attr($theme_options['menu_btn_color']) . ';' . "\n"; }
 					if (!empty($theme_options['menu_hover_color']))  { $style_ .= 'color : '.esc_attr($theme_options['menu_hover_color']) . ';' . "\n"; }
 				$style_ .= '} ' . "\n";
-				
+
 				/*Add Custom Colors to theme*/
 				if (!empty($theme_options['p_font_color']))  	    { $style_ .= 'body {color : '. esc_attr($theme_options['p_font_color']) .'; } ' . "\n"; }
-				if (!empty($theme_options['widgets_sep_color']))  { 
+				if (!empty($theme_options['widgets_sep_color']))  {
 					$style_ .= '#page .container #secondary .widget h3.widget-title, #page .container #secondary .widget h1.widget-title, header.post-header .post-title  {border-color : '. esc_attr($theme_options['widgets_sep_color']) .'; } ' . "\n";
 					$style_ .= 'body.single-product #page .related.products h2  {border-bottom-color : '. esc_attr($theme_options['widgets_sep_color']) .'; } ' . "\n";
 				}
-				if (!empty($theme_options['a_font_color']))   		{ 
-					
-					$a_font_color = esc_attr($theme_options['a_font_color']); 
-					 
-					$style_ .= 'a {color : '.$a_font_color.'; }'; 
-					$style_ .= '#page .container #secondary>.widget_nav_menu>div>ul>li ul>li>a:before {color : '.$a_font_color.'; }'; 
-					$style_ .= '#page .container #secondary .widget ul li.cat-item a:before {color : '.$a_font_color.'; }'; 
-					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li>a:after {color : '. $a_font_color .'; }'; 
-					$style_ .= 'html[dir="rtl"] #page .container #secondary .widget ul li.cat-item a:after {color : '. $a_font_color .'; }'; 
+				if (!empty($theme_options['a_font_color']))   		{
+
+					$a_font_color = esc_attr($theme_options['a_font_color']);
+
+					$style_ .= 'a {color : '.$a_font_color.'; }';
+					$style_ .= '#page .container #secondary>.widget_nav_menu>div>ul>li ul>li>a:before {color : '.$a_font_color.'; }';
+					$style_ .= '#page .container #secondary .widget ul li.cat-item a:before {color : '.$a_font_color.'; }';
+					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li>a:after {color : '. $a_font_color .'; }';
+					$style_ .= 'html[dir="rtl"] #page .container #secondary .widget ul li.cat-item a:after {color : '. $a_font_color .'; }';
 				}
-				
-				if (!empty($theme_options['a_hover_font_color']))   { 
-					$style_ .= 'a:hover   {color : '. esc_attr($theme_options['a_hover_font_color']) .'; } '  . "\n"; 
-					
-					$style_ .= '#page .container #secondary>.widget_nav_menu li.current-menu-item>a {color : '. esc_attr($theme_options['a_hover_font_color']) .'; } '; 
-					
+
+				if (!empty($theme_options['a_hover_font_color']))   {
+					$style_ .= 'a:hover   {color : '. esc_attr($theme_options['a_hover_font_color']) .'; } '  . "\n";
+
+					$style_ .= '#page .container #secondary>.widget_nav_menu li.current-menu-item>a {color : '. esc_attr($theme_options['a_hover_font_color']) .'; } ';
+
 					$style_ .= '#page .container #secondary>.widget_nav_menu>div>ul>li ul>li>a:hover:before,
 								#page .container #secondary>.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:before,
-								#page .container #secondary>.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:hover:before{color : '. esc_attr($theme_options['a_hover_font_color']) .'; }'; 
-					
+								#page .container #secondary>.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:hover:before{color : '. esc_attr($theme_options['a_hover_font_color']) .'; }';
+
 					$style_ .= '#page .container #secondary .widget ul li.current-cat>a,
 								#page .container #secondary .widget ul li.cat-item ul li.current-cat a:before,
-								#page .container #secondary .widget ul li.cat-item a:hover:before{color : '. esc_attr($theme_options['a_hover_font_color']) .'; }'; 
-					
-					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li>a:hover:after,'; 
-					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:after,'; 
-					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:hover:after{color : '. esc_attr($theme_options['a_hover_font_color']) .'; } '  . "\n"; 
+								#page .container #secondary .widget ul li.cat-item a:hover:before{color : '. esc_attr($theme_options['a_hover_font_color']) .'; }';
+
+					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li>a:hover:after,';
+					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:after,';
+					$style_ .= 'html[dir="rtl"] #page .container #secondary>.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:hover:after{color : '. esc_attr($theme_options['a_hover_font_color']) .'; } '  . "\n";
 					$style_ .= 'html[dir="rtl"] #page .container #secondary .widget ul li.current-cat>a,
 								html[dir="rtl"] #page .container #secondary .widget ul li.current-cat>a:after,
-								html[dir="rtl"] #page .container #secondary .widget ul li.cat-item a:hover:after{color : '. esc_attr($theme_options['a_hover_font_color']) .'; } '; 
+								html[dir="rtl"] #page .container #secondary .widget ul li.cat-item a:hover:after{color : '. esc_attr($theme_options['a_hover_font_color']) .'; } ';
 				}
-				
+
 				if (!empty($theme_options['a_focus_font_color']))   { $style_ .= 'a:focus   {color : '. esc_attr($theme_options['a_focus_font_color']) .'; } '  . "\n"; }
 				if (!empty($theme_options['a_active_font_color']))  { $style_ .= 'a:active  {color : '. esc_attr($theme_options['a_active_font_color']) .'; } ' . "\n"; }
-				
-				if (!empty($theme_options['date_of_post_b_color']))  { 
+
+				if (!empty($theme_options['date_of_post_b_color']))  {
 					$style_ .= '.blog_post .date_of_post  {background : none repeat scroll 0 0 '. esc_attr($theme_options['date_of_post_b_color']) .'; } ' . "\n";
 				}
-				
-				if (!empty($theme_options['date_of_post_f_color']))  { 
+
+				if (!empty($theme_options['date_of_post_f_color']))  {
 					$style_ .= '.blog_post .date_of_post  {color : '. esc_attr($theme_options['date_of_post_f_color']) .'; } ' . "\n";
 				}
-				
-				//$woo_style_ .= '.num_of_product_cart {border-color: '. esc_attr($theme_options['menu_btn_color']) . '; }  ' . "\n"; 
+
+				//$woo_style_ .= '.num_of_product_cart {border-color: '. esc_attr($theme_options['menu_btn_color']) . '; }  ' . "\n";
 				if (!empty($theme_options['cart_color'])) {
-					$woo_style_ .= '.cart_image {color: '. esc_attr($theme_options['cart_color']) . '; }  ' . "\n"; 
-					$woo_style_ .= '.num_of_product_cart {border-color: '. esc_attr($theme_options['cart_color']) . '; }  ' . "\n"; 
+					$woo_style_ .= '.cart_image {color: '. esc_attr($theme_options['cart_color']) . '; }  ' . "\n";
+					$woo_style_ .= '.num_of_product_cart {border-color: '. esc_attr($theme_options['cart_color']) . '; }  ' . "\n";
 				}
-				
+
 				if (!empty($theme_options['btn_color'])) {
 					$btn_color = esc_attr($theme_options['btn_color']);
-					
+
 					$style_		 .= 'button, input[type="button"], input[type="submit"], input[type="reset"]{background-color : '.$btn_color.' !important; } ';
 					$style_		 .= 'body a.btn.btn-primary, body button.btn.btn-primary, body input[type="button"].btn.btn-primary , body input[type="submit"].btn.btn-primary {background-color : '.$btn_color.' !important; }';
 					$woo_style_  .= '.woocommerce table.my_account_orders .order-actions .button, .woocommerce-page table.my_account_orders .order-actions .button{background-color : '.$btn_color.' !important; }';
 					$style_ 	 .= '.nav-links.shop .pages-links .page-numbers, .nav-links.shop .nav-next a, .nav-links.shop .nav-previous a{background-color : '.$btn_color.' !important; }';
 				}
-				
+
 				if (!empty($theme_options['btn_active_color'])) {
 					$btn_active_color = esc_attr($theme_options['btn_active_color']);
-					
+
 					$style_ .= 'button:hover, button:active, button:focus{background-color : '.$btn_active_color.' !important; }';
 					$style_ .= 'input[type="button"]:hover, input[type="button"]:active, input[type="button"]:focus{background-color : '.$btn_active_color.' !important; }';
 					$style_ .= 'input[type="submit"]:hover, input[type="submit"]:active, input[type="submit"]:focus{background-color : '.$btn_active_color.' !important; }';
@@ -1062,7 +1067,7 @@ if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 					$woo_style_  .= '.woocommerce table.my_account_orders .order-actions .button:hover, .woocommerce-page table.my_account_orders .order-actions .button:hover{background-color : '.$btn_active_color.' !important; }';
 					$style_ .= '.nav-links.shop .pages-links .page-numbers:hover, .nav-links.shop .nav-next a:hover, .nav-links.shop .nav-previous a:hover, .nav-links.shop .pages-links .page-numbers.current{background-color : '.$btn_active_color.' !important; }';
 				}
-				
+
 				/*social icons styles*/
 				if (!empty($theme_options['soc_icon_bg_color'])) {
 					$style_ .= '.social-icon>a>i{background:'.$theme_options['soc_icon_bg_color'].'}' . "\n";
@@ -1070,11 +1075,11 @@ if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 				if (!empty($theme_options['soc_icon_color'])) {
 					$style_ .= '.social-icon>a>i{color:'.$theme_options['soc_icon_color'].'}' . "\n";
 				}
-				
-				
+
+
 				/*Woocommerce styles*/
 				if (class_exists('woocommerce')){
-					
+
 					if (!empty($theme_options['woo_shop_sidebar']) && !is_tax('product_tag')){
 						$shop_sidebar_template = $theme_options['woo_shop_sidebar'];
 						if ($shop_sidebar_template == 3){	/*right sidebar template*/
@@ -1089,7 +1094,7 @@ if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 							$woo_style_ .= '.woocommerce .woocommerce-ordering, .woocommerce-page .woocommerce-ordering{float:right}'."\n";
 						}
 					}
-					
+
 					if (!empty($theme_options['woo_product_sidebar'])){
 						$product_sidebar_template = $theme_options['woo_product_sidebar'];
 						if ($product_sidebar_template == 3){	/*right sidebar template*/
@@ -1102,71 +1107,71 @@ if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 							$woo_style_ .= '.single-product #page .container .woo-loop-sidebar #secondary{float:left}'."\n";
 						}
 					}
-					
+
 					/*price color*/
-					if (!empty($theme_options['a_hover_font_color']))   { 
+					if (!empty($theme_options['a_hover_font_color']))   {
 						$woo_style_ .= '.woocommerce ul.products li.product .price ,
 										.woocommerce-page ul.products li.product .price,
-										body.woocommerce div.product span.price, 
-										body.woocommerce-page div.product span.price, 
+										body.woocommerce div.product span.price,
+										body.woocommerce-page div.product span.price,
 										body.woocommerce #content div.product span.price,
 										body.woocommerce-page #content div.product span.price,
-										body.woocommerce div.product p.price, 
+										body.woocommerce div.product p.price,
 										body.woocommerce-page div.product p.price,
-										body.woocommerce #content div.product p.price, 
-										body.woocommerce-page #content div.product p.price{color : '. esc_attr($theme_options['a_hover_font_color']) .'; }'; 
+										body.woocommerce #content div.product p.price,
+										body.woocommerce-page #content div.product p.price{color : '. esc_attr($theme_options['a_hover_font_color']) .'; }';
 					}
-					
+
 					/*buttons color*/
 					if (!empty($theme_options['btn_color'])) {
 						$btn_color = esc_attr($theme_options['btn_color']);
-						
+
 						$woo_style_ .= '.woocommerce .woocommerce-message, .woocommerce-page .woocommerce-message{border-top:3px solid '.$btn_color.';}';
 						$woo_style_ .= '.woocommerce .woocommerce-info, .woocommerce-page .woocommerce-info{border-top:3px solid '.$btn_color.';}';
 						$woo_style_ .= '.single-product .woocommerce-message .button{background-color:'.$btn_color.';}';
 					}
-					
+
 					/*buttons hover color*/
 					if (!empty($theme_options['btn_active_color']))
 					$woo_style_ .= '.single-product .woocommerce-message .button:hover{background-color:'.esc_attr($theme_options['btn_active_color']).';}';
-					
+
 					if (!empty($theme_options['woo_sale_price_color'])) {
 						$color_rgba = fruitful_hex2rgb($theme_options['woo_sale_price_color']);
 						$color = $color_rgba['red'] . ',' . $color_rgba['green'] . ',' . $color_rgba['blue'];
 						$woo_style_ .= '.woocommerce ul.products li.product .price del, .woocommerce-page ul.products li.product .price del {color:rgba('.$color.',.5); }';
-					}	
-					
+					}
+
 					if (!empty($theme_options['woo_rating_color_regular'])) {
 						$woo_style_ .= '.woocommerce .star-rating, .woocommerce-page .star-rating,
-										.woocommerce p.stars a.star-1, 
-										.woocommerce p.stars a.star-2, 
-										.woocommerce p.stars a.star-3, 
+										.woocommerce p.stars a.star-1,
+										.woocommerce p.stars a.star-2,
+										.woocommerce p.stars a.star-3,
 										.woocommerce p.stars a.star-4,
-										.woocommerce p.stars a.star-5, 
-										.woocommerce-page p.stars a.star-1, 
-										.woocommerce-page p.stars a.star-2, 
-										.woocommerce-page p.stars a.star-3, 
-										.woocommerce-page p.stars a.star-4, 
-										.woocommerce-page p.stars a.star-5 { 
+										.woocommerce p.stars a.star-5,
+										.woocommerce-page p.stars a.star-1,
+										.woocommerce-page p.stars a.star-2,
+										.woocommerce-page p.stars a.star-3,
+										.woocommerce-page p.stars a.star-4,
+										.woocommerce-page p.stars a.star-5 {
 											color:' .esc_attr($theme_options['woo_rating_color_regular']). '; }';
 					}
-					
+
 					if (!empty($theme_options['woo_rating_color_active'])) {
-						$woo_style_ .= '.woocommerce p.stars a.star-1:hover, 
-										.woocommerce p.stars a.star-2:hover, 
-										.woocommerce p.stars a.star-3:hover, 
+						$woo_style_ .= '.woocommerce p.stars a.star-1:hover,
+										.woocommerce p.stars a.star-2:hover,
+										.woocommerce p.stars a.star-3:hover,
 										.woocommerce p.stars a.star-4:hover,
-										.woocommerce p.stars a.star-5:hover, 
-										.woocommerce-page p.stars a.star-1:hover, 
-										.woocommerce-page p.stars a.star-2:hover, 
-										.woocommerce-page p.stars a.star-3:hover, 
-										.woocommerce-page p.stars a.star-4:hover, 
+										.woocommerce p.stars a.star-5:hover,
+										.woocommerce-page p.stars a.star-1:hover,
+										.woocommerce-page p.stars a.star-2:hover,
+										.woocommerce-page p.stars a.star-3:hover,
+										.woocommerce-page p.stars a.star-4:hover,
 										.woocommerce-page p.stars a.star-5:hover,
 										.woocommerce .star-rating:hover, .woocommerce-page .star-rating:hover { color:' .esc_attr($theme_options['woo_rating_color_active']). '; }';
 					}
-				
+
 				}
-				
+
 				if (class_exists('BuddyPress')){
 					if (!empty($theme_options['btn_color'])) {
 						$style_ .= '#buddypress input[type=submit]{background-color : '.esc_attr($theme_options['btn_color']).' !important; } ' . "\n";
@@ -1175,21 +1180,21 @@ if ( ! function_exists( 'fruitful_get_responsive_style' ) ) {
 						$style_ .= '#buddypress input[type=submit]:hover, #buddypress input[type=submit]:active, #buddypress input[type=submit]:focus{background-color : '.esc_attr($theme_options['btn_active_color']).' !important; } ' . "\n";
 					}
 				}
-				
-			//} 
+
+			//}
 			//else {
 				//$style_ .= 'body {font-family:Open Sans, sans-serif}' . "\n";
 			//}
-		//} 
-			
+		//}
+
 		if (!empty($theme_options['custom_css'])) {
 			$style_ .= wp_kses_stripslashes($theme_options['custom_css']) . "\n";
-		}	
-		
-		wp_add_inline_style( 'main-style', fruitful_compress_code($style_)); 
+		}
+
+		wp_add_inline_style( 'main-style', fruitful_compress_code($style_));
 		if ($woo_style_ != '') {
-			wp_add_inline_style( 'woo-style', fruitful_compress_code($woo_style_)); 
-		}	
+			wp_add_inline_style( 'woo-style', fruitful_compress_code($woo_style_));
+		}
 	}
 	add_action('wp_enqueue_scripts', 'fruitful_get_responsive_style', 99);
 }
@@ -1200,7 +1205,7 @@ if ( ! function_exists( 'fruitful_get_sliders' ) ) {
 		$theme_options  = fruitful_get_theme_options();
 		$front_page_id  = get_option('page_on_front');
 		$blog_page_id   = get_option('page_for_posts ');
-	
+
 		$slider_layout = 0;
 		if (is_page() && !is_front_page() && !is_home()) {
 			$slider_layout  = get_post_meta( $post->ID, $prefix . 'slider_layout', true);
@@ -1209,21 +1214,21 @@ if ( ! function_exists( 'fruitful_get_sliders' ) ) {
 			$slider_layout  = get_post_meta( $blog_page_id, $prefix . 'slider_layout', true);
 		} elseif (is_front_page()) {
 			$slider_layout  = get_post_meta( $front_page_id, $prefix . 'slider_layout', true);
-		}	
-		
+		}
+
 		if ($slider_layout){
 			if (!empty($theme_options['select_slider'])) {
 				if ($theme_options['select_slider'] == "1") {
-					echo fruitful_get_slider_layout_flex(); 
-				} else if ($theme_options['select_slider'] == "2") {	
+					echo fruitful_get_slider_layout_flex();
+				} else if ($theme_options['select_slider'] == "2") {
 					echo fruitful_get_slider_layout_nivo();
-				}	
+				}
 			}
 		}
 	}
 }
 /* Woocommerce functions */
-if (class_exists('Woocommerce')) { 
+if (class_exists('Woocommerce')) {
 	/*change number of products per row shop page*/
 	add_filter('loop_shop_columns', 'fruitful_loop_columns');
 	if (!function_exists('fruitful_loop_columns')) {
@@ -1236,7 +1241,7 @@ if (class_exists('Woocommerce')) {
 			}
 		}
 	}
-	
+
 	/*change number of products per page shop page*/
 	add_filter( 'loop_shop_per_page', 'fruitful_loop_shop_per_page', 20);
 	if (!function_exists('fruitful_loop_shop_per_page')) {
@@ -1247,7 +1252,7 @@ if (class_exists('Woocommerce')) {
 			return $woo_shop_num_prod;
 		}
 	}
-	
+
 	/*remove sidebar from all woocommerce pages except shop page*/
 	add_action( 'wp', 'init' );
 	function init() {
@@ -1255,7 +1260,7 @@ if (class_exists('Woocommerce')) {
 			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 		}
 	}
-	
+
 	/*remove woocommerce sidebar on some pages*/
 	add_action('template_redirect', 'fruitful_remove_woo_sidebar');
 	if (!function_exists('fruitful_remove_woo_sidebar')) {
@@ -1265,33 +1270,33 @@ if (class_exists('Woocommerce')) {
 			}
 		}
 	}
-	
+
 	/*check is woocommerce sidebar will be hidden*/
 	if (!function_exists('fruitful_get_woo_sidebar')) {
 		function fruitful_get_woo_sidebar() {
 			$woo_sidebar = 2;
-			
+
 			if ( is_shop() || is_product_category() || is_tax('product_tag')) {
 				$theme_options = fruitful_get_theme_options();
 				if (!empty($theme_options['woo_shop_sidebar'])){
 					$woo_sidebar =  esc_attr($theme_options['woo_shop_sidebar']);
-				} 
+				}
 			}
 			if ( is_product() ) {
 				$theme_options = fruitful_get_theme_options();
 				if (!empty($theme_options['woo_product_sidebar'])){
 					$woo_sidebar =  esc_attr($theme_options['woo_product_sidebar']);
-				} 
+				}
 			}
 			return $woo_sidebar;
 		}
 	}
-	
+
 	/*rewrite pagenavi for woocommerce*/
 	remove_action('woocommerce_pagination', 'woocommerce_pagination', 10);
 	add_action( 'woocommerce_pagination', 'woocommerce_pagination', 10);
 	if ( ! function_exists( 'woocommerce_pagination' ) ) {
-		function woocommerce_pagination() { 
+		function woocommerce_pagination() {
 			fruitful_wp_corenavi();
 		}
 	}
@@ -1300,13 +1305,13 @@ if (class_exists('Woocommerce')) {
 	function fruitful_product_description_heading() {
 	   return '';
 	}
-	
+
 	/*4 cross products for cart*/
 	remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
 	add_action( 'woocommerce_cart_collaterals', 'fruitful_woocommerce_cross_sell_display' );
 	if ( ! function_exists( 'fruitful_woocommerce_cross_sell_display' ) ) {
 		function fruitful_woocommerce_cross_sell_display() {
-			
+
 			if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			global $woocommerce_loop, $woocommerce, $product;
 			$crosssells = $woocommerce->cart->get_cross_sells();
@@ -1336,8 +1341,8 @@ if (class_exists('Woocommerce')) {
 			wp_reset_query();
 		}
 	}
-		
-	/*4 of related products per row*/	
+
+	/*4 of related products per row*/
 	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 	add_action( 'woocommerce_after_single_product_summary', 'fruitful_after_single_product_summary', 20 );
 	if ( ! function_exists( 'fruitful_after_single_product_summary' ) ) {
@@ -1345,7 +1350,7 @@ if (class_exists('Woocommerce')) {
 			fruitful_woocommerce_related_products(4, 4);
 		}
 	}
-	
+
 	/*function for change posts per row and number of related products on single product page*/
 	if ( ! function_exists( 'fruitful_woocommerce_related_products' ) ) {
 		function fruitful_woocommerce_related_products($posts_per_page = 2, $columns = 2, $orderby = false){
@@ -1363,7 +1368,7 @@ if (class_exists('Woocommerce')) {
 			wc_get_template( 'single-product/related.php', $args );
 		}
 	}
-	
+
 	/*Update cart contents update when products are added to the cart via AJAX */
 	add_filter('add_to_cart_fragments', 'fruitful_woocommerce_header_add_to_cart_fragment');
 	if ( ! function_exists( 'fruitful_woocommerce_header_add_to_cart_fragment' ) ) {
@@ -1394,7 +1399,7 @@ function fruitful_custom_css_and_slider_scripts() {
 	add_action('wp_head', 'fruitful_custom_css_and_slider_scripts', 25);
 }
 if ( ! function_exists( 'fruitful_entry_meta' ) ) {
-function fruitful_entry_meta() { 
+function fruitful_entry_meta() {
 ?>
 	<span class="author-link author"><a href="<?php print esc_url( get_author_posts_url( get_the_author_meta( 'ID' ))); ?>"><?php print get_the_author(); ?></a></span>
 	<?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
@@ -1415,10 +1420,10 @@ function fruitful_entry_meta() {
 		<span class="tag-links">
 			<?php // printf( __( 'Tagged %1$s', 'fruitful' ), $tags_list ); ?>
 			<?php echo $tags_list; ?>
-		</span> 
+		</span>
 		<?php endif; // End if $tags_list ?>
 	<?php endif; // End if 'post' == get_post_type() ?>
-<?php 
+<?php
 }
 }
 if ( ! function_exists( 'fruitful_entry_date' ) ) {
@@ -1441,25 +1446,25 @@ if ( ! function_exists( 'fruitful_theme_options_validate' ) ) {
 function fruitful_theme_options_validate($value) {
 	return $value;
 }
-}	
+}
 if ( ! function_exists( 'fruitful_customize_preview_js' ) ) {
 function fruitful_customize_preview_js() {
 	wp_enqueue_script( 'fruitful-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130226', true );
 }
 add_action( 'customize_preview_init', 'fruitful_customize_preview_js' );
-}	
+}
 if ( ! function_exists( 'fruitful_metadevice' ) ) {
 	function fruitful_metadevice() {
-		$browser = '';				
-		$browser_ip	= strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");		
-		$browser_an	= strpos($_SERVER['HTTP_USER_AGENT'],"Android");		
-		$browser_ipad = strpos($_SERVER['HTTP_USER_AGENT'],"iPad");			 
-		if ($browser_ip  	== true) { $browser = 'iphone';  }	 
-		if ($browser_an		== true) { $browser = 'android'; } 	 
+		$browser = '';
+		$browser_ip	= strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+		$browser_an	= strpos($_SERVER['HTTP_USER_AGENT'],"Android");
+		$browser_ipad = strpos($_SERVER['HTTP_USER_AGENT'],"iPad");
+		if ($browser_ip  	== true) { $browser = 'iphone';  }
+		if ($browser_an		== true) { $browser = 'android'; }
 		if ($browser_ipad 	== true) { $browser = 'ipad'; }
-		if($browser == 'iphone') 	{ echo '<meta name="viewport" content="width=480, maximum-scale=1, user-scalable=0"/>';  } 
-		if($browser == 'android') 	{ echo '<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width" />'; } 
-		if($browser == 'ipad') 		{ echo '<meta name="viewport" content="width=768px, minimum-scale=1.0, maximum-scale=1.0" />'; } 
+		if($browser == 'iphone') 	{ echo '<meta name="viewport" content="width=480, maximum-scale=1, user-scalable=0"/>';  }
+		if($browser == 'android') 	{ echo '<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width" />'; }
+		if($browser == 'ipad') 		{ echo '<meta name="viewport" content="width=768px, minimum-scale=1.0, maximum-scale=1.0" />'; }
 	}
 }
 add_action( 'wp_head', 'fruitful_metadevice' );
@@ -1474,10 +1479,10 @@ if ( ! function_exists( 'fruitful_esc_content_pbr' ) ) {
 }
 if ( ! function_exists( 'fruitful_get_class_pos' ) ) {
 	function fruitful_get_class_pos($index)  {
-		if ($index == 0) { 		$pos_class = 'left-pos'; 	} 
-		else if ($index == 1) {	$pos_class = 'center-pos';	} 
+		if ($index == 0) { 		$pos_class = 'left-pos'; 	}
+		else if ($index == 1) {	$pos_class = 'center-pos';	}
 		else {  $pos_class = 'right-pos'; }
-		
+
 		return esc_attr($pos_class);
 	}
 }
@@ -1490,11 +1495,11 @@ function fruitful_kses_data($text = null) {
 if ( ! function_exists( 'fruitful_get_languages_list' ) ) {
 	function fruitful_get_languages_list(){
 		$theme_options = fruitful_get_theme_options();
-		if( function_exists('icl_get_languages') && $theme_options['is_wpml_ready'] == 'on' ){ 
+		if( function_exists('icl_get_languages') && $theme_options['is_wpml_ready'] == 'on' ){
 			$languages = icl_get_languages('skip_missing=0');
-			
+
 			if(!empty($languages)){
-			
+
 				echo '<div id="header_language_select"><ul id="lang-select-block">';
 				foreach($languages as $l){
 					if($l['active']) {
@@ -1502,15 +1507,15 @@ if ( ! function_exists( 'fruitful_get_languages_list' ) ) {
 							echo '<a class="'.$l['language_code'].'" href="'.$l['url'].'" onclick="return false">';
 								echo $l['language_code'];
 							echo '</a>';
-						echo '<ul id="lang-select-popup">';					
-						
+						echo '<ul id="lang-select-popup">';
+
 							echo '<li class="active">';
 								echo '<a class="'.$l['language_code'].'" href="'.$l['url'].'" onclick="return false">';
 									echo $l['native_name'];
 								echo '</a>';
 							echo '</li>';
-					} 
-						
+					}
+
 				}
 				foreach($languages as $l){
 					if(!($l['active'])) {
@@ -1521,55 +1526,55 @@ if ( ! function_exists( 'fruitful_get_languages_list' ) ) {
 					}
 				}
 						echo '</ul>';
-					echo '</li>';					
+					echo '</li>';
 				echo '</ul></div>';
 			}
 		}
 	}
 }
 if ( ! function_exists( 'fruitful_wp_corenavi' ) ) {
-	function fruitful_wp_corenavi() {  
-		global $wp_query, 
-				$wp_rewrite;  
+	function fruitful_wp_corenavi() {
+		global $wp_query,
+				$wp_rewrite;
 		$next_label = $prev_label = '';
 		if (wp_is_mobile()) {
-			$next_label = __(' &laquo; ','fruitful'); 
+			$next_label = __(' &laquo; ','fruitful');
 			$prev_label = __(' &raquo; ','fruitful');
 		} else {
 			$next_label = __('&laquo; Previous Page','fruitful');
-			$prev_label = __('Next Page &raquo;','fruitful'); 
+			$prev_label = __('Next Page &raquo;','fruitful');
 		}
-		
-		$pages = '';  
-		$max = $wp_query->max_num_pages;  
+
+		$pages = '';
+		$max = $wp_query->max_num_pages;
 		if (!$current = get_query_var('paged')) {
-			$current = 1;  
-		} 
-		 
-		$a['base']    = str_replace(999999999, '%#%', get_pagenum_link(999999999));  
-		$a['total']   = $max;  
-		$a['current'] = $current;  
-		  
-		$total = 0;    //1 - display the text "Page N of N", 0 - not display  
-		$a['mid_size'] = 2;  //how many links to show on the left and right of the current  
-		$a['end_size'] = 1;  //how many links to show in the beginning and end  
-		$a['prev_text'] = '';  //text of the "Previous page" link  
-		$a['next_text'] = '';  //text of the "Next page" link  
-		  
+			$current = 1;
+		}
+
+		$a['base']    = str_replace(999999999, '%#%', get_pagenum_link(999999999));
+		$a['total']   = $max;
+		$a['current'] = $current;
+
+		$total = 0;    //1 - display the text "Page N of N", 0 - not display
+		$a['mid_size'] = 2;  //how many links to show on the left and right of the current
+		$a['end_size'] = 1;  //how many links to show in the beginning and end
+		$a['prev_text'] = '';  //text of the "Previous page" link
+		$a['next_text'] = '';  //text of the "Next page" link
+
 		if  ($max > 1) {
-			echo '<div class="pagination nav-links shop aligncenter">';  
-		} 
+			echo '<div class="pagination nav-links shop aligncenter">';
+		}
 		if  ($total == 1 && $max > 1) {
-			$pages = '<span class="pages">Page ' . $current . ' of ' . $max . '</span>'."\r\n";  
-		} 
+			$pages = '<span class="pages">Page ' . $current . ' of ' . $max . '</span>'."\r\n";
+		}
 		echo '<div class="nav-previous ">'; previous_posts_link($next_label); echo '</div>';
 			echo '<div class="pages-links">';
-				echo $pages . paginate_links($a);  
+				echo $pages . paginate_links($a);
 			echo '</div>';
 		echo '<div class="nav-next">';  next_posts_link($prev_label); echo '</div>';
 		if ($max > 1) {
-			echo '</div>';  
-		} 
+			echo '</div>';
+		}
 	}
 }
 /*rewrite get_product_search_form() function*/
@@ -1585,15 +1590,15 @@ if ( ! function_exists( 'fruitful_get_product_search_form' ) ) {
 		</form>
 		<?php
 	}
-}	
+}
 if ( ! function_exists( 'fruitful_is_woo_sidebar' ) ) {
 	function fruitful_is_woo_sidebar() {
 		$is_sidebar = true;
-		if (class_exists('Woocommerce')) { 
+		if (class_exists('Woocommerce')) {
 			if (is_cart() || is_checkout() || is_account_page()) {
 				 $is_sidebar = false;
 			}
-		}	
+		}
 		return $is_sidebar;
 	}
 }
@@ -1614,58 +1619,58 @@ if(!function_exists('fruitful_is_latest_posts_page')){
 if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 	function fruitful_get_content_with_custom_sidebar($curr_sidebar = null) {
 		global $post;
-		
+
 		function get_content_part() {
 			global $post;
-			
+
 			?>
 			<div id="primary" class="content-area">
-				<div id="content" class="site-content" role="main">	
-			<?php			
+				<div id="content" class="site-content" role="main">
+			<?php
 				/* Start the Loop */
 				$page_on_front  = get_option('page_on_front');
 				$page_for_posts = get_option('page_for_posts');
-				
-				
+
+
 				if (is_page() && !empty($page_on_front) &&  !empty($page_for_posts) && ($page_on_front == $page_for_posts)) {
 					echo '<div class="alert alert-danger"><strong>'.__("Front page displays Error.", 'fruitful').'</strong> '.__('Select different pages!', 'fruitful').'</div>';
-					
+
 				} else {
 					if (!is_archive() && !is_search() && !is_404()) {
 						if (is_home()) {
-							if ( have_posts() ) : 
-								/* The loop */ 
-								while ( have_posts() ) : the_post(); 
+							if ( have_posts() ) :
+								/* The loop */
+								while ( have_posts() ) : the_post();
 									do_action('before_post_content_loop');
-										get_template_part( 'content', get_post_format() ); 
+										get_template_part( 'content', get_post_format() );
 									do_action('after_post_content_loop');
-								endwhile; 
-								fruitful_content_nav( 'nav-below' ); 
+								endwhile;
+								fruitful_content_nav( 'nav-below' );
 							else :
-								get_template_part( 'no-results', 'index' ); 
+								get_template_part( 'no-results', 'index' );
 							endif;
 						} else {
-							
+
 							if ( have_posts() ) {
 								while ( have_posts() ) : the_post();
 									if (is_page() && !is_front_page() && !is_home()) {
-										get_template_part( 'content', 'page' ); 
-										if (fruitful_state_page_comment()) { 
-											comments_template( '', true );  
+										get_template_part( 'content', 'page' );
+										if (fruitful_state_page_comment()) {
+											comments_template( '', true );
 										}
 									} else if (is_single()) {
 										get_template_part( 'content', get_post_format() );
 										fruitful_content_nav( 'nav-below' );
-									
-										if (fruitful_state_post_comment()) { 
-											if ( comments_open() || '0' != get_comments_number() ) comments_template();  
+
+										if (fruitful_state_post_comment()) {
+											if ( comments_open() || '0' != get_comments_number() ) comments_template();
 										}
 									} else if (is_front_page())	{
 										get_template_part( 'content', 'page' );
 									}
 							   endwhile;
 							}
-						} 
+						}
 					} else {
 						?>
 							<section id="primary" class="content-area">
@@ -1675,7 +1680,7 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 										<header class="page-header">
 											<h1 class="page-title">
 												<?php
-													
+
 													if ( is_archive()) {
 														if ( is_category() ) {
 															printf( __( 'Category Archives: %s', 'fruitful' ), '<span>' . single_cat_title( '', false ) . '</span>' );
@@ -1687,7 +1692,7 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 															rewind_posts();
 														} elseif ( is_day() ) {
 															printf( __( 'Daily Archives: %s', 'fruitful' ), '<span>' . get_the_date() . '</span>' );
-	
+
 														} elseif ( is_month() ) {
 															printf( __( 'Monthly Archives: %s', 'fruitful' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
 														} elseif ( is_year() ) {
@@ -1696,9 +1701,9 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 															_e( 'Archives', 'fruitful' );
 														}
 													}
-													
+
 													if (is_search())
-														printf( __( 'Search Results for: %s', 'fruitful' ), '<span>' . get_search_query() . '</span>' ); 
+														printf( __( 'Search Results for: %s', 'fruitful' ), '<span>' . get_search_query() . '</span>' );
 												?>
 											</h1>
 											<?php
@@ -1714,21 +1719,21 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 											?>
 										</header><!-- .page-header -->
 
-										<?php /* Start the Loop */ 
-										while ( have_posts() ) : the_post(); 
+										<?php /* Start the Loop */
+										while ( have_posts() ) : the_post();
 											do_action('before_post_content_loop');
 												get_template_part( 'content', get_post_format() );
-											do_action('after_post_content_loop');	
-										endwhile; 
+											do_action('after_post_content_loop');
+										endwhile;
 										fruitful_content_nav( 'nav-below' );
-										
-									else : 
+
+									else :
 										if (is_404()) {
-											get_template_part( 'content', '404' );	
+											get_template_part( 'content', '404' );
 										} else {
 											get_template_part( 'no-results', 'archive' );
-										}	
-										
+										}
+
 									endif; ?>
 
 								</div><!-- #content .site-content -->
@@ -1738,43 +1743,43 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 				}
 			?>
 				</div>
-			</div>	
-		<?php 
+			</div>
+		<?php
 		}
-		
+
 		function get_html_custom_post_template($content_class, $sidebar_class, $curr_sidebar, $content_type) {
 			global $post;
 			$is_sidebar = true;
 			$is_sidebar = fruitful_is_woo_sidebar();
-				
+
 			if ($content_type == 0) { ?>
-				<?php get_content_part(); ?>	
+				<?php get_content_part(); ?>
 		<?php } else if ($content_type == 1) { ?>
-				
-				<div class="eleven columns <?php echo $content_class;?>"><?php get_content_part(); ?> </div>	
-				
+
+				<div class="eleven columns <?php echo $content_class;?>"><?php get_content_part(); ?> </div>
+
 				<?php if ($is_sidebar && is_page()) { ?>
 					<div class="five columns <?php echo $sidebar_class;?>"> <?php get_sidebar($curr_sidebar); ?> </div>
-				<?php } else { ?>	
+				<?php } else { ?>
 					<div class="five columns <?php echo $sidebar_class;?>"> <?php get_sidebar($curr_sidebar); ?> </div>
-				<?php } ?>	
-				
+				<?php } ?>
+
 		<?php } else if ($content_type == 2) { ?>
-				
-				<div class="eleven columns <?php echo $content_class;?>"> <?php get_content_part(); ?> </div>	
-				
+
+				<div class="eleven columns <?php echo $content_class;?>"> <?php get_content_part(); ?> </div>
+
 				<?php if ($is_sidebar && is_page()) { ?>
 					<div class="five columns <?php echo $sidebar_class;?>"> <?php get_sidebar($curr_sidebar); ?> </div>
-				<?php } else { ?>	
+				<?php } else { ?>
 					<div class="five columns <?php echo $sidebar_class;?>"> <?php get_sidebar($curr_sidebar); ?> </div>
-				<?php } ?>	
-				
-		<?php } 
+				<?php } ?>
+
+		<?php }
 		}
-		
+
 		$curr_template = '';
 		$options = fruitful_get_theme_options();
-		
+
 		if (fruitful_is_latest_posts_page()) {
 			if (!empty($options['latest_posts_templ'])){
 				$curr_template = esc_attr($options['latest_posts_templ']);
@@ -1782,7 +1787,7 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 		} elseif (is_archive()) {
 			if (is_tag()) {
 				if (!empty($options['layout_tag_templ'])){
-					$curr_template = esc_attr($options['layout_tag_templ']);	
+					$curr_template = esc_attr($options['layout_tag_templ']);
 				}
 			} elseif (is_category()) {
 				if (!empty($options['layout_cat_templ'])){
@@ -1794,9 +1799,9 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 				}
 			} else {
 				if (!empty($options['layout_archive_templ'])){
-					$curr_template = esc_attr($options['layout_archive_templ']); 
+					$curr_template = esc_attr($options['layout_archive_templ']);
 				}
-			}	
+			}
 		} elseif (is_404()) {
 			if (!empty($options['layout_404_templ'])){
 				$curr_template = esc_attr($options['layout_404_templ']);
@@ -1807,14 +1812,14 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 			}
 		} else {
 			$default_blog_template = (get_post_meta( get_option('page_for_posts', true), '_fruitful_page_layout', true ))?(get_post_meta( get_option('page_for_posts', true), '_fruitful_page_layout', true )-1) : 1;
-			
+
 			$default_post_template = (get_post_meta( $post->ID , '_fruitful_page_layout', true ))?(get_post_meta(  $post->ID , '_fruitful_page_layout', true )-1):esc_attr($options['layout_single_templ']);
 			$default_page_template = (get_post_meta( $post->ID , '_fruitful_page_layout', true ))?(get_post_meta(  $post->ID , '_fruitful_page_layout', true )-1):esc_attr($options['layout_page_templ']);
 			if (!fruitful_is_blog()) {
 				if (is_archive()) {
 					$curr_template = $default_blog_template;
 				} else {
-						
+
 					if (class_exists('BuddyPress')){
 						$bp_pages = get_option('bp-pages');			//possible pages - activity, members, register, activate
 						foreach ($bp_pages as $bp_page_slug => $bp_page_id){
@@ -1827,7 +1832,7 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 					} else {
 						$curr_template = $default_page_template;
 					}
-					
+
 				}
 			} else {
 				if (is_single()) {
@@ -1837,17 +1842,17 @@ if ( ! function_exists( 'fruitful_get_content_with_custom_sidebar' ) ) {
 				}
 			}
 		}
-		
-		if ($curr_template == 0) { 
+
+		if ($curr_template == 0) {
 			get_html_custom_post_template('alpha', 'omega', $curr_sidebar, $curr_template);
-		} else if ($curr_template == 1) { 
+		} else if ($curr_template == 1) {
 			get_html_custom_post_template('alpha', 'omega', $curr_sidebar, $curr_template);
 		} else if ($curr_template == 2) {
 			get_html_custom_post_template('omega', 'alpha', $curr_sidebar, $curr_template);
 		} else {
 			if (is_home()) {
 				$curr_template = 1;
-			}		
+			}
 			get_html_custom_post_template('alpha', 'omega', $curr_sidebar, $curr_template);
 		}
 	}
@@ -1862,36 +1867,36 @@ if (!class_exists('ffs')){
 	}
 	add_action('admin_notices', 'fruitful_shortcodes_admin_notice');
 }
-if (class_exists('Woocommerce')) { 	
+if (class_exists('Woocommerce')) {
 	function fruitful_init_woo_actions() {
 		function go_hooks() {
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
 			remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);
 			remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
 			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
-			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);		
+			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
 			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
 			add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_title', 5);
 			add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 10);
-			add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_rating', 20);		
-			add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_price', 20); 
+			add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_rating', 20);
+			add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_price', 20);
 			add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
-			
+
 		}
-		
+
 		$woo_tabs_pos = fruitful_get_woo_sidebar();
 		if ($woo_tabs_pos == 4)
 			go_hooks();
-			
+
 	}
 	add_action( 'wp', 'fruitful_init_woo_actions' , 10);
 }
-if (class_exists('Woocommerce')) { 	
+if (class_exists('Woocommerce')) {
 	function fruitful_init_woo_styles() {
-		
+
 		function go_woo_tabs_left(){
 			$style_ = $back_style = $woo_style_ = '';
-			$theme_options  = fruitful_get_theme_options(); 
+			$theme_options  = fruitful_get_theme_options();
 			//$style_ .= '@media only screen and (min-width: 1024px) {body.woocommerce div.product div.summary, body.woocommerce-page div.product div.summary, body.woocommerce #content div.product div.summary, body.woocommerce-page #content div.product div.summary {max-width : 100%; }}' . "\n";
 			$style_ .= '@media only screen and (min-width: 1024px) {body.woocommerce div.product .woocommerce-tabs, body.woocommerce-page div.product .woocommerce-tabs, body.woocommerce #content div.product .woocommerce-tabs, body.woocommerce-page #content div.product .woocommerce-tabs {float: left; }}' . "\n";
 			$style_ .= '@media only screen and (max-width: 1024px) {body.woocommerce div.product .woocommerce-tabs, body.woocommerce-page div.product .woocommerce-tabs, body.woocommerce #content div.product .woocommerce-tabs, body.woocommerce-page #content div.product .woocommerce-tabs {margin: 0 0 15px 0;}}' . "\n";
@@ -1899,22 +1904,22 @@ if (class_exists('Woocommerce')) {
 			$style_ .= '.single.woocommerce span.onsale, .single.woocommerce-page span.onsale {  top: 6px; right:15px; left: auto; position: absolute;  display: block;}' . "\n";
 			$style_ .= '@media only screen and (max-width: 1024px) {body.woocommerce div.product div.images, body.woocommerce-page div.product div.images, body.woocommerce #content div.product div.images, body.woocommerce-page #content div.product div.images{ clear: both; position: relative; margin: 20px auto; }}' . "\n";
 			$style_ .= '@media only screen and (min-width: 1024px) {.entry-title, .woocommerce-product-rating, div[itemprop="offers"], div[itemprop="offers"].price{ display:inline-block; width: 565px;}}' . "\n";
-			wp_add_inline_style( 'main-style', fruitful_compress_code($style_)); 
+			wp_add_inline_style( 'main-style', fruitful_compress_code($style_));
 			if ($woo_style_ != '') {
-				wp_add_inline_style( 'woo-style', fruitful_compress_code($woo_style_)); 
-			}	
+				wp_add_inline_style( 'woo-style', fruitful_compress_code($woo_style_));
+			}
 		}
-		
+
 			function go_woo_tabs_center(){
 			$style_ = $back_style = $woo_style_ = '';
-			$theme_options  = fruitful_get_theme_options(); 
+			$theme_options  = fruitful_get_theme_options();
 			$style_ .= '@media only screen and (min-width: 1024px) {body.woocommerce div.product .woocommerce-tabs, body.woocommerce-page div.product .woocommerce-tabs, body.woocommerce #content div.product .woocommerce-tabs, body.woocommerce-page #content div.product .woocommerce-tabs {max-width : 100%; margin-top: 20px;}}' . "\n";
-				wp_add_inline_style( 'main-style', fruitful_compress_code($style_)); 
+				wp_add_inline_style( 'main-style', fruitful_compress_code($style_));
 			if ($woo_style_ != '') {
-				wp_add_inline_style( 'woo-style', fruitful_compress_code($woo_style_)); 
-			}	
+				wp_add_inline_style( 'woo-style', fruitful_compress_code($woo_style_));
 			}
-		
+			}
+
 		$woo_tabs_pos = fruitful_get_woo_sidebar();
 		if ($woo_tabs_pos == 4)
 			go_woo_tabs_left();
