@@ -13,28 +13,28 @@
 
 var DOPBSPBackEndLocations = new function(){
     'use strict';
-    
+
     /*
      * Private variables.
      */
     var $ = jQuery.noConflict();
-    
+
     /*
      * Constructor
      */
     this.__construct = function(){
     };
-    
+
     /*
      * Initialize Google Maps before display.
      */
     this.init = function(){
-        if (typeof google !== 'object' 
+        if (typeof google !== 'object'
                 || typeof google.maps !== 'object'){
             var script = document.createElement('script');
 
             script.type = 'text/JavaScript';
-            script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&callback=DOPBSPBackEndLocations.display';
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCvX2No0J5sG2KNaFSVwmFvBV3t2TcvenQ&v=3.exp&libraries=places&callback=DOPBSPBackEndLocations.display';
 
             $('body').append(script);
         }
@@ -58,6 +58,6 @@ var DOPBSPBackEndLocations = new function(){
             DOPBSPBackEnd.toggleMessages('error', data.status+': '+data.statusText);
         });
     };
-    
+
     return this.__construct();
 };
